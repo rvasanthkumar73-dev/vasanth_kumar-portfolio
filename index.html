@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Vasanth Kumar R - Aspiring Full Stack Developer & AI/ML Engineer. Showcasing computer vision, natural language processing, and automation agent projects.">
+  <title>Vasanth Kumar R | Full Stack Developer & AI/ML Engineer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for premium icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="dark-theme">
+
+  <!-- Ambient Interactive Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Floating Glow Orbs for Theatrical Vibe -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-accent">&lt;</span>Vasanth<span class="logo-accent">.R /&gt;</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link btn-contact">Contact</a>
+      </nav>
+
+      <!-- Badge & Mobile Navigation Control -->
+      <div class="nav-actions">
+        <div class="badge-work">
+          <span class="badge-dot"></span>
+          <span class="badge-text">Open to Work</span>
+        </div>
+        <button class="hamburger" id="hamburger-toggle" aria-label="Toggle Navigation Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <nav class="mobile-nav-menu">
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="#skills" class="mobile-nav-link">Skills</a>
+      <a href="#projects" class="mobile-nav-link">Projects</a>
+      <a href="#certifications" class="mobile-nav-link">Certifications</a>
+      <a href="#experience" class="mobile-nav-link">Experience</a>
+      <a href="#education" class="mobile-nav-link">Education</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Main Scrolling Site -->
+  <main class="content-wrapper">
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-text-content fade-in-up">
+          <div class="hero-badge-container">
+            <span class="hero-mini-title">Computer Science Graduate 2026</span>
+            <span class="badge-work hero-mobile-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-text">Open to Work</span>
+            </span>
+          </div>
+          <h1 class="hero-title">
+            Hi, I am <span class="text-gradient">Vasanth Kumar R</span>
+          </h1>
+          <p class="hero-subtitle">Aspiring Full Stack Developer | AI/ML Engineering Focus</p>
+          <p class="hero-tagline">Building intelligent systems, computer vision models, and autonomous agents.</p>
+          
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <i class="fa-solid fa-arrow-down-long"></i>
+            </a>
+            <a href="#" id="show-resume-btn" class="btn btn-secondary">
+              <span>Show Resume</span>
+              <i class="fa-solid fa-file-pdf"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-in-up delay-200">
+          <div class="interactive-card hero-glass-card">
+            <div class="card-glow-bg"></div>
+            <div class="terminal-header">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+              <span class="terminal-title">status.py</span>
+            </div>
+            <div class="terminal-body font-mono">
+              <p class="line-comment"># Interactive developer overview</p>
+              <p><span class="keyword">class</span> <span class="class-name">Developer</span>:</p>
+              <p class="indent-1"><span class="def">def</span> <span class="func">__init__</span>(self):</p>
+              <p class="indent-2">self.name = <span class="string">"Vasanth Kumar R"</span></p>
+              <p class="indent-2">self.role = <span class="string">"Full Stack / AI-ML"</span></p>
+              <p class="indent-2">self.cgpa = <span class="number">8.33</span></p>
+              <p class="indent-2">self.graduating = <span class="number">2026</span></p>
+              <p class="indent-2">self.focus = [<span class="string">"Deep Learning"</span>, <span class="string">"Agents"</span>]</p>
+              <p class="indent-1"><span class="def">def</span> <span class="func">get_status</span>(self):</p>
+              <p class="indent-2"><span class="keyword">return</span> <span class="string">"Actively seeking engineering roles"</span></p>
+              <p class="line-output">&gt;&gt;&gt; Developer().get_status()</p>
+              <p class="line-result">"Actively seeking engineering roles"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator-container">
+        <a href="#about" class="scroll-indicator" aria-label="Scroll Down">
+          <span class="mouse">
+            <span class="wheel"></span>
+          </span>
+          <span class="arrow"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. About Section -->
+    <section id="about" class="about-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">About Me</span></h2>
+        <div class="about-grid">
+          <div class="about-text fade-in-up delay-100">
+            <p class="lead">
+              Final-year Computer Science Engineering student (CGPA 8.33), graduating 2026, with an AI/ML engineering focus.
+            </p>
+            <p>
+              I am a passionate self-learner who builds and deploys projects independently — from multimodal deep learning systems utilizing computer vision and audio processing, to autonomous multi-agent systems and custom automation workflows.
+            </p>
+            <p>
+              My approach bridges frontend user experience with deep backend models, creating robust applications that bring AI out of scripts and into live, interactive environments.
+            </p>
+          </div>
+          <div class="about-highlights fade-in-up delay-200">
+            <div class="highlight-box glass-card">
+              <i class="fa-solid fa-graduation-cap highlight-icon"></i>
+              <div class="highlight-content">
+                <h3>Graduation Year</h3>
+                <p>2026</p>
+              </div>
+            </div>
+            <div class="highlight-box glass-card">
+              <i class="fa-solid fa-chart-line highlight-icon"></i>
+              <div class="highlight-content">
+                <h3>Academic Standing</h3>
+                <p>CGPA 8.33</p>
+              </div>
+            </div>
+            <div class="highlight-box glass-card">
+              <i class="fa-solid fa-brain highlight-icon"></i>
+              <div class="highlight-content">
+                <h3>Focus Areas</h3>
+                <p>AI/ML Engineering & Full Stack</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Technical Skills -->
+    <section id="skills" class="skills-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">Technical Skills</span></h2>
+        <p class="section-desc fade-in-up delay-100">A curation of languages, frameworks, AI libraries, and tools I use to build systems.</p>
+
+        <div class="skills-grid">
+          <!-- Languages -->
+          <div class="skills-category-card glass-card fade-in-up delay-100">
+            <div class="category-header">
+              <i class="fa-solid fa-code icon-accent"></i>
+              <h3>Languages</h3>
+            </div>
+            <div class="skills-chips">
+              <!-- Java -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(224, 117, 36, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">Java</span>
+              </div>
+              <!-- JavaScript -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(247, 223, 30, 0.3) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">JavaScript</span>
+              </div>
+              <!-- PHP -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(119, 123, 179, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">PHP</span>
+              </div>
+              <!-- Python -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(55, 118, 171, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">Python</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Frontend -->
+          <div class="skills-category-card glass-card fade-in-up delay-200">
+            <div class="category-header">
+              <i class="fa-solid fa-laptop-code icon-accent"></i>
+              <h3>Web & Frontend</h3>
+            </div>
+            <div class="skills-chips">
+              <!-- HTML5 -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(227, 79, 38, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">HTML5</span>
+              </div>
+              <!-- CSS3 -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(21, 114, 182, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">CSS3</span>
+              </div>
+              <!-- React.js -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(97, 218, 251, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">React.js</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI / ML -->
+          <div class="skills-category-card glass-card fade-in-up delay-300">
+            <div class="category-header">
+              <i class="fa-solid fa-brain icon-accent"></i>
+              <h3>AI & ML Engineering</h3>
+            </div>
+            <div class="skills-chips">
+              <!-- PyTorch -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(238, 76, 44, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">PyTorch</span>
+              </div>
+              <!-- Transformers (BERT/HuBERT) -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(255, 210, 30, 0.3) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.simpleicons.org/huggingface/FFD21E" alt="Transformers" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">Transformers</span>
+              </div>
+              <!-- MediaPipe -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(0, 127, 127, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.simpleicons.org/mediapipe/007F7F" alt="MediaPipe" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">MediaPipe</span>
+              </div>
+              <!-- OpenCV -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(0, 255, 0, 0.25) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">OpenCV</span>
+              </div>
+              <!-- FastAPI -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(0, 150, 136, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">FastAPI</span>
+              </div>
+              <!-- WebSockets -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.simpleicons.org/socketdotio/ffffff" alt="WebSockets" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">WebSockets</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div class="skills-category-card glass-card fade-in-up delay-400">
+            <div class="category-header">
+              <i class="fa-solid fa-database icon-accent"></i>
+              <h3>Database</h3>
+            </div>
+            <div class="skills-chips">
+              <!-- MySQL -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(68, 121, 161, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">MySQL</span>
+              </div>
+              <!-- SQLite -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(0, 59, 87, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">SQLite</span>
+              </div>
+              <!-- DBMS Concepts -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%);"></div>
+                  <svg viewBox="0 0 448 512" class="skill-logo-3d" fill="currentColor" style="color: #a78bfa; width: 42px; height: 42px;"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c-42.2-22.9-97-38.7-169.2-38.7s-127 15.8-169.2 38.7C20.2 233.2 0 256.2 0 282.3c0 44.2 100.3 80 224 80s224-35.8 224-80c0-26.1-20.2-49.1-54.8-67.6zM0 432c0 44.2 100.3 80 224 80s224-35.8 224-80c0-26.1-20.2-49.1-54.8-67.6-42.2-22.9-97-38.7-169.2-38.7s-127 15.8-169.2 38.7C20.2 382.8 0 405.8 0 432z"/></svg>
+                </div>
+                <span class="skill-label">DBMS Concepts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="skills-category-card glass-card fade-in-up delay-500">
+            <div class="category-header">
+              <i class="fa-solid fa-screwdriver-wrench icon-accent"></i>
+              <h3>Tools & Automation</h3>
+            </div>
+            <div class="skills-chips">
+              <!-- Git -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(240, 80, 50, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">Git</span>
+              </div>
+              <!-- GitHub -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">GitHub</span>
+              </div>
+              <!-- Docker -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(36, 150, 237, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">Docker</span>
+              </div>
+              <!-- n8n -->
+              <div class="skill-card-3d">
+                <div class="skill-card-3d-inner">
+                  <div class="skill-logo-glow" style="background: radial-gradient(circle, rgba(255, 108, 55, 0.35) 0%, transparent 70%);"></div>
+                  <img src="https://cdn.simpleicons.org/n8n/FF6C37" alt="n8n" class="skill-logo-3d">
+                </div>
+                <span class="skill-label">n8n</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Featured Projects -->
+    <section id="projects" class="projects-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">Featured Projects</span></h2>
+        <p class="section-desc fade-in-up delay-100">Click links to view interactive codebases and live deployments.</p>
+
+        <div class="projects-list">
+          
+          <!-- Flagship Project: Sentinel Interface -->
+          <div class="project-card flagship-card glass-card fade-in-up">
+            <div class="flagship-badge">
+              <i class="fa-solid fa-star"></i>
+              <span>Flagship Project</span>
+            </div>
+            <div class="project-content">
+              <div class="project-info">
+                <h3 class="project-title">Sentinel Interface — Multisource Emotion Recognition System</h3>
+                <p class="project-summary">Real-time multimodal deep learning platform for student engagement monitoring in e-learning platforms.</p>
+                <p class="project-details">
+                  Fuses computer vision (MediaPipe 468 landmarks + PyTorch CNN), acoustic processing (HuBERT/Wav2Vec 2.0), and text sentiment analysis (BERT) over asynchronous WebSockets to provide multi-source engagement levels. Features ACID-compliant SQLite session logs, dynamic Chart.js analytics dashboards, and structured CSV export reports.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">FastAPI</span>
+                  <span class="tech-tag">PyTorch</span>
+                  <span class="tech-tag">Transformers</span>
+                  <span class="tech-tag">MediaPipe</span>
+                  <span class="tech-tag">OpenCV</span>
+                  <span class="tech-tag">WebSockets</span>
+                  <span class="tech-tag">SQLite</span>
+                  <span class="tech-tag">Chart.js</span>
+                  <span class="tech-tag">Docker</span>
+                  <span class="tech-tag">Hugging Face Spaces</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://r-vasanthkumar73-dev-sentinel-multimodal-emotion-ai.hf.space" target="_blank" rel="noopener noreferrer" class="project-btn btn-primary-link">
+                    <i class="fa-solid fa-square-arrow-up-right"></i>
+                    <span>Live Space Demo</span>
+                  </a>
+                  <a href="https://github.com/rvasanthkumar73-dev/Sentinel-Multimodal-Emotion-AI" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary-link">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub Repository</span>
+                  </a>
+                </div>
+              </div>
+              <div class="project-visual-side">
+                <div class="visual-mockup terminal-mockup">
+                  <div class="mockup-header">
+                    <span class="mockup-dot"></span>
+                    <span class="mockup-dot"></span>
+                    <span class="mockup-dot"></span>
+                    <span class="mockup-tab-title">sentinel_fuser.py</span>
+                  </div>
+                  <div class="mockup-code font-mono">
+                    <p><span class="keyword">import</span> asyncio</p>
+                    <p><span class="keyword">import</span> torch</p>
+                    <p class="line-comment"># Fuses multi-source tensor features</p>
+                    <p><span class="def">async def</span> <span class="func">fuse_modalities</span>(cv_feat, audio_feat, text_feat):</p>
+                    <p class="indent-1">combined = torch.cat([cv_feat, audio_feat, text_feat], dim=-1)</p>
+                    <p class="indent-1">outputs = model_fuser(combined)</p>
+                    <p class="indent-1">engagement = torch.softmax(outputs, dim=-1)</p>
+                    <p class="indent-1"><span class="keyword">return</span> {</p>
+                    <p class="indent-2"><span class="string">"engagement_score"</span>: engagement[<span class="number">0</span>].item(),</p>
+                    <p class="indent-2"><span class="string">"status"</span>: <span class="string">"active_monitoring"</span></p>
+                    <p class="indent-1">}</p>
+                    <p class="line-output"># Stream initialized on ws://localhost/stream</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+            <!-- Project 2: Eco-Agent -->
+            <div class="project-card standard-card glass-card fade-in-up delay-100">
+              <div class="card-header-accent"></div>
+              <div class="project-card-body">
+                <div class="project-tag-strip">
+                  <span>Google & Kaggle AI Intensive</span>
+                </div>
+                <h3 class="project-title">Eco-Agent</h3>
+                <p class="project-summary">Autonomous environmental assistant built during Google & Kaggle's 5-Day AI Agents Intensive, "Agents for Good" track.</p>
+                <p class="project-details">
+                  Parses daily activity logs in natural language, calculates carbon emissions via a custom MCP server, and provides real-time behavioral intervention suggestions. Implements a multi-agent ADK 2.0 workflow graph: security_checkpoint → orchestrator → tracker_agent + intervention_agent (via MCP Toolset) → human-in-the-loop approval → final report. Includes PII redaction and prompt-injection detection at security.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Google ADK 2.0</span>
+                  <span class="tech-tag">Gemini API</span>
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">MCP</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/rvasanthkumar73-dev/eco-agent" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary-link">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=zoqg9K1qVHU" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary-link">
+                    <i class="fa-brands fa-youtube icon-youtube"></i>
+                    <span>Watch Video</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3: AI Tech-News Automation Agent -->
+            <div class="project-card standard-card glass-card fade-in-up delay-200">
+              <div class="card-header-accent"></div>
+              <div class="project-card-body">
+                <div class="project-tag-strip">
+                  <span>Workflow & Automation</span>
+                </div>
+                <h3 class="project-title">AI Tech-News Automation Agent</h3>
+                <p class="project-summary">Self-built tech news curation workflow with Gemini AI agents.</p>
+                <p class="project-details">
+                  Features an automated n8n workflow triggered daily. The Gemini-powered AI agent fetches, filters, and curates daily technology updates and news articles from verified sources into a structured, highly formatted HTML email newsletter, which is automatically compiled and delivered to Gmail.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">n8n</span>
+                  <span class="tech-tag">Gemini API</span>
+                  <span class="tech-tag">HTML Email Templating</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/rvasanthkumar73-dev/n8n-tech-news-automation" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary-link">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4: Omni-Trace -->
+            <div class="project-card standard-card glass-card fade-in-up delay-300">
+              <div class="card-header-accent"></div>
+              <div class="project-card-body">
+                <div class="project-tag-strip">
+                  <span>Frontend Application</span>
+                </div>
+                <h3 class="project-title">Omni-Trace | Universal Sustainability Tracker</h3>
+                <p class="project-summary">Web-based carbon accounting dashboard with dynamic statistics.</p>
+                <p class="project-details">
+                  Calculates real-time daily environmental footprints client-side in vanilla JavaScript. Features dynamic, color-coded Chart.js visual charts tracking different carbon components. Uses LocalStorage to persist client audit history, and allows benchmarking footprints against global average statistics.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">Chart.js</span>
+                  <span class="tech-tag">LocalStorage</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/rvasanthkumar73-dev/Omni-Trace" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary-link">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                  </a>
+                  <a href="https://vasanthkumar73.neocities.org/Omni-Trace:Universal_Sustainability_Tracker/vasanth-index" target="_blank" rel="noopener noreferrer" class="project-btn btn-primary-link">
+                    <i class="fa-solid fa-square-arrow-up-right"></i>
+                    <span>Live Demo</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Certifications -->
+    <section id="certifications" class="certifications-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">Certifications</span></h2>
+        <p class="section-desc fade-in-up delay-100">Professional credentials, courses, and certifications completed.</p>
+
+        <div class="certifications-list">
+          <!-- Cert 1 -->
+          <div class="cert-item glass-card fade-in-up">
+            <div class="cert-icon-container">
+              <i class="fa-solid fa-database cert-icon"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Database Management Systems</h3>
+              <p class="cert-provider">NPTEL (SWAYAM)</p>
+            </div>
+            <div class="cert-meta">
+              <span class="cert-badge">Elite Certificate</span>
+            </div>
+          </div>
+
+          <!-- Cert 2 -->
+          <div class="cert-item glass-card fade-in-up">
+            <div class="cert-icon-container">
+              <i class="fa-brands fa-java cert-icon"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Java Fundamentals</h3>
+              <p class="cert-provider">L&T EduTech</p>
+            </div>
+            <div class="cert-meta">
+              <span class="cert-badge-standard">Completed</span>
+            </div>
+          </div>
+
+          <!-- Cert 3 -->
+          <div class="cert-item glass-card fade-in-up">
+            <div class="cert-icon-container">
+              <i class="fa-solid fa-code cert-icon"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Advanced Frontend Development</h3>
+              <p class="cert-provider">Anudip Foundation</p>
+            </div>
+            <div class="cert-meta">
+              <span class="cert-period">Jan – Mar 2026</span>
+            </div>
+          </div>
+
+          <!-- Cert 4 -->
+          <div class="cert-item glass-card fade-in-up">
+            <div class="cert-icon-container">
+              <i class="fa-solid fa-gears cert-icon"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Automate Everything With n8n</h3>
+              <p class="cert-provider">LetsUpgrade x NSDC</p>
+            </div>
+            <div class="cert-meta">
+              <span class="cert-badge-standard">Completed</span>
+            </div>
+          </div>
+
+          <!-- Cert 5 -->
+          <div class="cert-item glass-card fade-in-up">
+            <div class="cert-icon-container">
+              <i class="fa-solid fa-bolt cert-icon"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Claude 101</h3>
+              <p class="cert-provider">Anthropic</p>
+            </div>
+            <div class="cert-meta">
+              <span class="cert-badge-standard">Completed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Experience -->
+    <section id="experience" class="experience-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">Professional Experience</span></h2>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          
+          <div class="timeline-item glass-card fade-in-up">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <span class="timeline-duration">Remote Internship</span>
+              <h3 class="timeline-role">Full Stack Development Intern</h3>
+              <h4 class="timeline-company">NoviTech R&D Pvt Ltd</h4>
+            </div>
+            <div class="timeline-body">
+              <p>Worked with HTML, CSS, JavaScript, and basic backend concepts to develop client-side interfaces and application structures.</p>
+              <ul>
+                <li>Gained exposure to project development workflows and standard version control conventions.</li>
+                <li>Collaborated within simulated development groups to solve styling challenges and coordinate interface components.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Education -->
+    <section id="education" class="education-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">Education</span></h2>
+
+        <div class="education-grid">
+          <!-- Degree 1 -->
+          <div class="education-card glass-card fade-in-up">
+            <div class="edu-icon-container">
+              <i class="fa-solid fa-graduation-cap edu-card-icon"></i>
+            </div>
+            <div class="edu-info">
+              <span class="edu-period">2022 – 2026</span>
+              <h3>BE, Computer Science and Engineering</h3>
+              <p class="edu-institution">Global Institute of Engineering and Technology, Ranipet</p>
+              <div class="edu-performance">
+                <span class="perf-label">Score:</span>
+                <span class="perf-val">CGPA 8.33</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Degree 2 -->
+          <div class="education-card glass-card fade-in-up delay-100">
+            <div class="edu-icon-container">
+              <i class="fa-solid fa-award edu-card-icon"></i>
+            </div>
+            <div class="edu-info">
+              <span class="edu-period">Conferred 2017</span>
+              <h3>PGDCA (Post Graduate Diploma in Computer Applications)</h3>
+              <p class="edu-institution">Vellore Computer Training Centre</p>
+              <div class="edu-performance">
+                <span class="perf-label">Evaluation:</span>
+                <span class="perf-val">Grade A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Contact & Footer -->
+    <section id="contact" class="contact-section section-padding scroll-spy">
+      <div class="container">
+        <h2 class="section-title fade-in-up"><span class="text-gradient">Get In Touch</span></h2>
+        <p class="section-desc fade-in-up delay-100">Connect with me for developer opportunities, technical projects, or collaborations.</p>
+
+        <div class="contact-content-grid">
+          <div class="contact-methods-box fade-in-up delay-200">
+            <!-- Email -->
+            <a href="mailto:r.vasanthkumar73@gmail.com" class="contact-card glass-card">
+              <i class="fa-solid fa-envelope contact-icon"></i>
+              <div class="contact-detail">
+                <span>Email Address</span>
+                <p>r.vasanthkumar73@gmail.com</p>
+              </div>
+              <div class="contact-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+918428797268" class="contact-card glass-card">
+              <i class="fa-solid fa-phone contact-icon"></i>
+              <div class="contact-detail">
+                <span>Phone Number</span>
+                <p>+91 8428797268</p>
+              </div>
+              <div class="contact-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/vasanth-kumar-r-global" target="_blank" rel="noopener noreferrer" class="contact-card glass-card">
+              <i class="fa-brands fa-linkedin-in contact-icon"></i>
+              <div class="contact-detail">
+                <span>LinkedIn Profile</span>
+                <p>linkedin.com/in/vasanth-kumar-r-global</p>
+              </div>
+              <div class="contact-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/rvasanthkumar73-dev" target="_blank" rel="noopener noreferrer" class="contact-card glass-card">
+              <i class="fa-brands fa-github contact-icon"></i>
+              <div class="contact-detail">
+                <span>GitHub Profile</span>
+                <p>github.com/rvasanthkumar73-dev</p>
+              </div>
+              <div class="contact-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+          </div>
+
+          <!-- Spline 3D Robot Container -->
+          <div class="contact-robot-container fade-in-up delay-300">
+            <div class="robot-iframe-wrapper">
+              <iframe src="https://my.spline.design/genkubgreetingrobot-cYjNjMj1NImfYlfpvXxiEvKr/" frameborder="0" allowtransparency="true"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-bar">
+    <div class="container footer-container">
+      <p class="copyright">&copy; 2026 Vasanth Kumar R. All rights reserved.</p>
+      <p class="footer-tagline">Built with modern client-side standards & AI systems focus.</p>
+    </div>
+  </footer>
+
+  <!-- Resume Preview Modal -->
+  <div id="resume-modal" class="modal-overlay hidden">
+    <div class="modal-container">
+      <!-- Top Navigation Bar -->
+      <div class="modal-header">
+        <div class="modal-title-container">
+          <i class="fa-solid fa-file-pdf modal-pdf-icon"></i>
+          <span class="modal-title">Vasanth_Kumar_R_Resume.pdf</span>
+        </div>
+        <div class="modal-controls">
+          <div class="zoom-controls">
+            <button id="zoom-out-btn" class="zoom-btn" aria-label="Zoom Out">
+              <i class="fa-solid fa-magnifying-glass-minus"></i>
+            </button>
+            <span id="zoom-level" class="zoom-level">100%</span>
+            <button id="zoom-in-btn" class="zoom-btn" aria-label="Zoom In">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </button>
+          </div>
+          <a href="./Resume.pdf" target="_blank" rel="noopener noreferrer" class="new-tab-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span class="btn-text">Open in New Tab</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Middle Frame PDF Container -->
+      <div class="modal-body">
+        <div id="pdf-scroll-container" class="pdf-scroll-container">
+          <iframe id="resume-iframe" src="./Resume.pdf#toolbar=0" title="Vasanth Kumar R Resume PDF"></iframe>
+        </div>
+      </div>
+
+      <!-- Bottom Action Bar -->
+      <div class="modal-footer">
+        <button id="close-modal-btn" class="close-btn" aria-label="Close resume viewer">
+          <i class="fa-solid fa-xmark"></i>
+          <span>Close (Esc)</span>
+        </button>
+        <button id="download-pdf-btn" class="download-btn">
+          <i class="fa-solid fa-download"></i>
+          <span>Download PDF</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="index.js"></script>
+</body>
+</html>
