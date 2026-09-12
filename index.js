@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize dynamic 3D skill cards
   initSkills3D();
+
+  // Initialize infinite horizontal 3D certificate vault & lightbox modal
+  initCertVault();
 });
 
 /* --------------------------------------------------
@@ -421,4 +424,454 @@ function initSkills3D() {
       inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
   });
+}
+
+/* --------------------------------------------------
+   6. 3D CoverFlow Certificate Vault & Lightbox Modal
+   -------------------------------------------------- */
+const CERTIFICATES_DATA = [
+  {
+    id: "cert-dbms",
+    title: "Data Base Management System",
+    issuer: "NPTEL (SWAYAM) — IIT Kharagpur",
+    badge: "Elite Certificate (67%)",
+    issueDate: "Jul - Sep 2024",
+    image: "./assets/certificates/cert_1_dbms.png",
+    description: "Elite NPTEL 8-week course certification (Roll No: NPTEL24CS75S249500369) funded by MoE, Govt. of India. Covers relational algebra, SQL optimization, indexing structures, transaction management, and concurrency control."
+  },
+  {
+    id: "cert-pgdca",
+    title: "PGDCA - Diploma Certificate",
+    issuer: "VCTC (Approved by BSS NDA, Govt. of India)",
+    badge: "Grade A",
+    issueDate: "Nov 2016 - Nov 2017",
+    image: "./assets/certificates/cert_2_pgdca.png",
+    description: "Post Graduate Diploma in Computer Applications (Reg. No. 802). In-depth mastery covering Computer Fundamentals, Windows, MS Office, C, C++, VB, Java, MS-DOS, HTML, Hardware Concepts & Internet."
+  },
+  {
+    id: "cert-fullstack-novitech",
+    title: "Full Stack Development Internship",
+    issuer: "NoviTech R&D Private Limited",
+    badge: "ISO 9001:2015 Certified",
+    issueDate: "Jun 29 - Jul 29, 2025",
+    image: "./assets/certificates/cert_3_fullstack.png",
+    description: "One-month industry internship (NT_FSDIN119) in Full Stack Development. Hands-on experience in modern frontend web architecture, backend RESTful APIs, database design, and end-to-end web deployment."
+  },
+  {
+    id: "cert-ibm-ai",
+    title: "Artificial Intelligence Fundamentals",
+    issuer: "IBM SkillsBuild",
+    badge: "Credly Verified",
+    issueDate: "Oct 08, 2025",
+    image: "./assets/certificates/cert_4_ibm_ai.png",
+    description: "Professional IBM certification recognizing commitment to AI excellence. Mastery of Artificial Intelligence fundamentals, machine learning workflows, neural network architectures, and practical AI application frameworks."
+  },
+  {
+    id: "cert-n8n",
+    title: "Automate Everything With n8n",
+    issuer: "LetsUpgrade x NSDC (Collab with GDG MAD)",
+    badge: "Workflow Specialist",
+    issueDate: "May 17, 2026",
+    image: "./assets/certificates/cert_5_n8n.png",
+    description: "Certified completion (No: LUEN8NMAY126266) in collaboration with NSDC, ITM Edutech, & GDG MAD. Specialized in building autonomous n8n workflows, generative AI node integrations, webhooks, and automated data pipelines."
+  },
+  {
+    id: "cert-lnt-bootcamp",
+    title: "Full-Stack Web Dev Bootcamp",
+    issuer: "L&T EduTech",
+    badge: "Pathway Certified",
+    issueDate: "2025",
+    image: "./assets/certificates/cert_6_lnt_fullstack.png",
+    description: "Certificate of Course Pathway Completion (CID: LTE/EI/1000) covering 8 full-stack courses and 33 hours of learning in HTML, CSS, JS, PHP, and WordPress web architecture."
+  },
+  {
+    id: "cert-novitech-ml",
+    title: "30 Days MasterClass in Machine Learning",
+    issuer: "NoviTech R&D Private Limited",
+    badge: "ISO 9001:2015 Certified",
+    issueDate: "Mar 10 - Apr 14, 2025",
+    image: "./assets/certificates/cert_7_novitech_ml.png",
+    description: "Intensive 30-day MasterClass (NT_B4ML374) in Machine Learning. Covered supervised and unsupervised learning algorithms, regression, classification, feature engineering, and model evaluation metrics."
+  },
+  {
+    id: "cert-kaggle-vibe",
+    title: "5-Day AI Agents: Intensive Vibe Coding",
+    issuer: "Kaggle | Google",
+    badge: "Badge Earned",
+    issueDate: "Jul 30, 2026",
+    image: "./assets/certificates/cert_8_kaggle_ai.png",
+    description: "Official Kaggle & Google AI certification for completing the intensive 5-day AI Agents course. Covered autonomous agent orchestration, multi-tool function calling, stateful memory graphs, and prompt engineering."
+  },
+  {
+    id: "cert-anudip-frontend",
+    title: "Advance Frontend Development",
+    issuer: "Anudip | Mettl Certified",
+    badge: "Grade A1 (249 Hrs)",
+    issueDate: "May 21, 2026",
+    image: "./assets/certificates/cert_9_anudip_frontend.png",
+    description: "Comprehensive 249-hour certification (Student ID: AF05103953) with Grade A1. In-depth mastery of advanced HTML5/CSS3, JavaScript ES6+, React component lifecycle, responsive design systems, and state management."
+  }
+];
+
+function initCertVault() {
+  const container = document.getElementById('cert-vault-root');
+  if (!container) return;
+
+  let currentIndex = 0; // Starts at 1st certificate (DBMS)
+
+  // Generate cards HTML (exactly 9 cards, no duplicates!)
+  const cardsHTML = CERTIFICATES_DATA.map((item, idx) => {
+    return `
+      <div class="cert-vault-card-wrapper" data-index="${idx}">
+        <div class="cert-vault-card" data-id="${item.id}">
+          <div class="cert-vault-glow-layer"></div>
+          <div class="cert-vault-image-box">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" class="cert-vault-img"/>
+            <div class="cert-vault-img-overlay"></div>
+            <span class="cert-vault-badge"><i class="fa-solid fa-award"></i> ${item.badge}</span>
+            <span class="cert-vault-date">${item.issueDate}</span>
+          </div>
+          <div class="cert-vault-body">
+            <div class="cert-vault-issuer">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>${item.issuer}</span>
+            </div>
+            <h3 class="cert-vault-title">${item.title}</h3>
+            <p class="cert-vault-desc">${item.description}</p>
+            <div class="cert-vault-action">
+              <span class="cert-vault-btn">
+                <span>Inspect Certificate</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Step dots HTML for 9 certificates
+  const stepDotsHTML = CERTIFICATES_DATA.map((item, idx) => {
+    const shortTitle = item.title.length > 20 ? item.title.substring(0, 18) + '...' : item.title;
+    return `
+      <button class="cert-vault-step-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" aria-label="Go to ${item.title}">
+        <span>${idx + 1}</span>
+        <span class="cert-vault-dot-tooltip">${shortTitle}</span>
+      </button>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="cert-vault-coverflow-viewport" id="cert-vault-viewport">
+      <!-- Fixed Left and Right Navigation Buttons -->
+      <button id="cert-vault-prev-btn" class="cert-vault-nav-btn cert-vault-prev-btn" aria-label="Previous Certificate">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button id="cert-vault-next-btn" class="cert-vault-nav-btn cert-vault-next-btn" aria-label="Next Certificate">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="cert-vault-coverflow-track" id="cert-vault-track">
+        ${cardsHTML}
+      </div>
+    </div>
+
+    <!-- Creative Custom Horizontal Scrollbar & Progress Indicator -->
+    <div class="cert-vault-scrollbar-section">
+      <div class="cert-vault-scroll-track-bg" id="cert-vault-scroll-track">
+        <div class="cert-vault-scroll-fill" id="cert-vault-scroll-fill" style="width: 0%;"></div>
+      </div>
+      <div class="cert-vault-step-dots" id="cert-vault-step-dots">
+        ${stepDotsHTML}
+      </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="cert-vault-modal" class="cert-vault-modal-backdrop cert-vault-hidden" role="dialog" aria-modal="true">
+      <div class="cert-vault-modal-content">
+        <button id="cert-vault-modal-close" class="cert-vault-modal-close-btn" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="cert-vault-modal-body">
+          <div class="cert-vault-modal-preview">
+            <img id="cert-vault-modal-img" src="" alt="Certificate View" />
+          </div>
+          <div class="cert-vault-modal-info">
+            <div class="cert-vault-modal-header-tags">
+              <span id="cert-vault-modal-badge" class="cert-vault-badge"></span>
+              <span id="cert-vault-modal-date" class="cert-vault-date"></span>
+            </div>
+            <h2 id="cert-vault-modal-title" class="cert-vault-modal-title"></h2>
+            <div id="cert-vault-modal-issuer" class="cert-vault-issuer cert-vault-modal-issuer"></div>
+            <div class="cert-vault-modal-divider"></div>
+            <p id="cert-vault-modal-desc" class="cert-vault-modal-desc-text"></p>
+            <div class="cert-vault-modal-actions">
+              <button class="cert-vault-modal-action-btn" id="cert-vault-modal-verify-btn">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Verified Credential</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const viewport = container.querySelector('#cert-vault-viewport');
+  const prevBtn = container.querySelector('#cert-vault-prev-btn');
+  const nextBtn = container.querySelector('#cert-vault-next-btn');
+  const cardWrappers = container.querySelectorAll('.cert-vault-card-wrapper');
+  const scrollFill = container.querySelector('#cert-vault-scroll-fill');
+  const stepDots = container.querySelectorAll('.cert-vault-step-dot');
+  const scrollTrack = container.querySelector('#cert-vault-scroll-track');
+
+  // Update CoverFlow 3D Positions & Scale Highlight
+  function updateCoverflow() {
+    const isMobile = window.innerWidth < 768;
+    const spacing = isMobile ? 250 : 340;
+
+    cardWrappers.forEach((wrapper, idx) => {
+      const offset = idx - currentIndex;
+      const card = wrapper.querySelector('.cert-vault-card');
+
+      if (offset === 0) {
+        // Active Center Focus Card (Scaled Up & Highlighted!)
+        wrapper.style.transform = `translateX(0px) scale(1.14) translateZ(40px)`;
+        wrapper.style.opacity = '1';
+        wrapper.style.zIndex = '10';
+        wrapper.style.filter = 'none';
+        wrapper.style.pointerEvents = 'auto';
+        if (card) card.classList.add('cert-vault-card-active');
+      } else if (offset === -1) {
+        // Immediate Left Card
+        wrapper.style.transform = `translateX(-${spacing}px) scale(0.86) rotateY(18deg)`;
+        wrapper.style.opacity = '0.6';
+        wrapper.style.zIndex = '5';
+        wrapper.style.filter = 'brightness(0.7) blur(0.5px)';
+        wrapper.style.pointerEvents = 'auto';
+        if (card) card.classList.remove('cert-vault-card-active');
+      } else if (offset === 1) {
+        // Immediate Right Card
+        wrapper.style.transform = `translateX(${spacing}px) scale(0.86) rotateY(-18deg)`;
+        wrapper.style.opacity = '0.6';
+        wrapper.style.zIndex = '5';
+        wrapper.style.filter = 'brightness(0.7) blur(0.5px)';
+        wrapper.style.pointerEvents = 'auto';
+        if (card) card.classList.remove('cert-vault-card-active');
+      } else {
+        // Further Cards (Hidden/Faded)
+        const sign = offset < 0 ? -1 : 1;
+        wrapper.style.transform = `translateX(${sign * spacing * 1.6}px) scale(0.7) rotateY(${-sign * 25}deg)`;
+        wrapper.style.opacity = '0';
+        wrapper.style.zIndex = '1';
+        wrapper.style.pointerEvents = 'none';
+        if (card) card.classList.remove('cert-vault-card-active');
+      }
+    });
+
+    // Update Navigation Buttons state
+    if (prevBtn) {
+      prevBtn.disabled = currentIndex === 0;
+      prevBtn.style.opacity = currentIndex === 0 ? '0.35' : '1';
+      prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+    }
+    if (nextBtn) {
+      nextBtn.disabled = currentIndex === CERTIFICATES_DATA.length - 1;
+      nextBtn.style.opacity = currentIndex === CERTIFICATES_DATA.length - 1 ? '0.35' : '1';
+      nextBtn.style.cursor = currentIndex === CERTIFICATES_DATA.length - 1 ? 'not-allowed' : 'pointer';
+    }
+
+    // Update Progress Bar Fill Width & Step Dots
+    const progressPct = (currentIndex / (CERTIFICATES_DATA.length - 1)) * 100;
+    if (scrollFill) {
+      scrollFill.style.width = `${progressPct}%`;
+    }
+
+    stepDots.forEach((dot, idx) => {
+      if (idx === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  // Navigation Button Handlers
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCoverflow();
+      }
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < CERTIFICATES_DATA.length - 1) {
+        currentIndex++;
+        updateCoverflow();
+      }
+    });
+  }
+
+  // Step Dot Click Handlers
+  stepDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.getAttribute('data-index'), 10);
+      if (!isNaN(idx)) {
+        currentIndex = idx;
+        updateCoverflow();
+      }
+    });
+  });
+
+  // Track bar click handler
+  if (scrollTrack) {
+    scrollTrack.addEventListener('click', (e) => {
+      const rect = scrollTrack.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = clickX / rect.width;
+      const targetIndex = Math.round(pct * (CERTIFICATES_DATA.length - 1));
+      currentIndex = Math.max(0, Math.min(CERTIFICATES_DATA.length - 1, targetIndex));
+      updateCoverflow();
+    });
+  }
+
+  // Touch Swipe & Drag Handlers
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (viewport) {
+    viewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0 && currentIndex < CERTIFICATES_DATA.length - 1) {
+          currentIndex++; // Swipe Left -> Next
+          updateCoverflow();
+        } else if (diff < 0 && currentIndex > 0) {
+          currentIndex--; // Swipe Right -> Prev
+          updateCoverflow();
+        }
+      }
+    }
+  }
+
+  // Card click handler: click center card opens modal; click side card centers it!
+  cardWrappers.forEach((wrapper) => {
+    wrapper.addEventListener('click', () => {
+      const idx = parseInt(wrapper.getAttribute('data-index'), 10);
+      if (idx === currentIndex) {
+        // Open Lightbox Modal for focused center card
+        const certId = wrapper.querySelector('.cert-vault-card').getAttribute('data-id');
+        const itemData = CERTIFICATES_DATA.find(c => c.id === certId);
+        if (itemData) {
+          openModal(itemData);
+        }
+      } else {
+        // Shift focus to clicked card
+        currentIndex = idx;
+        updateCoverflow();
+      }
+    });
+  });
+
+  // Attach 3D Mouse Tilt effect ONLY to focused active card
+  const cards = container.querySelectorAll('.cert-vault-card');
+  cards.forEach(card => {
+    const glow = card.querySelector('.cert-vault-glow-layer');
+
+    card.addEventListener('mousemove', (e) => {
+      if (!card.classList.contains('cert-vault-card-active')) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((centerY - y) / centerY) * 10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      
+      if (glow) {
+        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(139, 92, 246, 0.4), transparent 70%)`;
+        glow.style.opacity = '1';
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      if (glow) glow.style.opacity = '0';
+    });
+  });
+
+  // Modal logic
+  const modal = document.getElementById('cert-vault-modal');
+  const closeBtn = document.getElementById('cert-vault-modal-close');
+  const modalImg = document.getElementById('cert-vault-modal-img');
+  const modalBadge = document.getElementById('cert-vault-modal-badge');
+  const modalDate = document.getElementById('cert-vault-modal-date');
+  const modalTitle = document.getElementById('cert-vault-modal-title');
+  const modalIssuer = document.getElementById('cert-vault-modal-issuer');
+  const modalDesc = document.getElementById('cert-vault-modal-desc');
+
+  function openModal(data) {
+    if (!modal) return;
+    modalImg.src = data.image;
+    modalImg.alt = data.title;
+    modalBadge.innerHTML = `<i class="fa-solid fa-award"></i> ${data.badge}`;
+    modalDate.textContent = data.issueDate;
+    modalTitle.textContent = data.title;
+    modalIssuer.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${data.issuer}`;
+    modalDesc.textContent = data.description;
+
+    modal.classList.remove('cert-vault-hidden');
+    modal.offsetHeight; // force reflow
+    modal.classList.add('cert-vault-active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('cert-vault-active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!modal.classList.contains('cert-vault-active')) {
+        modal.classList.add('cert-vault-hidden');
+      }
+    }, 300);
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('cert-vault-active')) {
+      closeModal();
+    } else if (e.key === 'ArrowLeft' && modal && modal.classList.contains('cert-vault-hidden')) {
+      if (currentIndex > 0) { currentIndex--; updateCoverflow(); }
+    } else if (e.key === 'ArrowRight' && modal && modal.classList.contains('cert-vault-hidden')) {
+      if (currentIndex < CERTIFICATES_DATA.length - 1) { currentIndex++; updateCoverflow(); }
+    }
+  });
+
+  window.addEventListener('resize', updateCoverflow);
+
+  // Initialize view
+  updateCoverflow();
 }
