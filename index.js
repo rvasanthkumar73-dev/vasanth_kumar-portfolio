@@ -388,7 +388,7 @@ function initResumeModal() {
   if (downloadPdfBtn) {
     downloadPdfBtn.addEventListener('click', () => {
       const link = document.createElement('a');
-      link.href = './Resume.pdf';
+      link.href = './Resume.pdf?v=2';
       link.download = 'Vasanth_Kumar_R_Resume.pdf';
       document.body.appendChild(link);
       link.click();
@@ -431,6 +431,24 @@ function initSkills3D() {
    -------------------------------------------------- */
 const CERTIFICATES_DATA = [
   {
+    id: "cert-anudip-frontend",
+    title: "Advance Frontend Development",
+    issuer: "Anudip | Mettl Certified",
+    badge: "Grade A1 (249 Hrs)",
+    issueDate: "May 21, 2026",
+    image: "./assets/certificates/cert_9_anudip_frontend.png",
+    description: "Comprehensive 249-hour certification (Student ID: AF05103953) with Grade A1. In-depth mastery of advanced HTML5/CSS3, JavaScript ES6+, React component lifecycle, responsive design systems, and state management."
+  },
+  {
+    id: "cert-kaggle-vibe",
+    title: "5-Day AI Agents: Intensive Vibe Coding",
+    issuer: "Kaggle | Google",
+    badge: "Badge Earned",
+    issueDate: "Jul 30, 2026",
+    image: "./assets/certificates/cert_8_kaggle_ai.png",
+    description: "Official Kaggle & Google AI certification for completing the intensive 5-day AI Agents course. Covered autonomous agent orchestration, multi-tool function calling, stateful memory graphs, and prompt engineering."
+  },
+  {
     id: "cert-dbms",
     title: "Data Base Management System",
     issuer: "NPTEL (SWAYAM) — IIT Kharagpur",
@@ -449,6 +467,15 @@ const CERTIFICATES_DATA = [
     description: "Post Graduate Diploma in Computer Applications (Reg. No. 802). In-depth mastery covering Computer Fundamentals, Windows, MS Office, C, C++, VB, Java, MS-DOS, HTML, Hardware Concepts & Internet."
   },
   {
+    id: "cert-ibm-ai",
+    title: "Artificial Intelligence Fundamentals",
+    issuer: "IBM SkillsBuild",
+    badge: "Credly Verified",
+    issueDate: "Oct 08, 2025",
+    image: "./assets/certificates/cert_4_ibm_ai.png",
+    description: "Professional IBM certification recognizing commitment to AI excellence. Mastery of Artificial Intelligence fundamentals, machine learning workflows, neural network architectures, and practical AI application frameworks."
+  },
+  {
     id: "cert-fullstack-novitech",
     title: "Full Stack Development Internship",
     issuer: "NoviTech R&D Private Limited",
@@ -458,13 +485,13 @@ const CERTIFICATES_DATA = [
     description: "One-month industry internship (NT_FSDIN119) in Full Stack Development. Hands-on experience in modern frontend web architecture, backend RESTful APIs, database design, and end-to-end web deployment."
   },
   {
-    id: "cert-ibm-ai",
-    title: "Artificial Intelligence Fundamentals",
-    issuer: "IBM SkillsBuild",
-    badge: "Credly Verified",
-    issueDate: "Oct 08, 2025",
-    image: "./assets/certificates/cert_4_ibm_ai.png",
-    description: "Professional IBM certification recognizing commitment to AI excellence. Mastery of Artificial Intelligence fundamentals, machine learning workflows, neural network architectures, and practical AI application frameworks."
+    id: "cert-be10x",
+    title: "AI Tools & ChatGPT Workshop",
+    issuer: "be10x (Verified)",
+    badge: "Workshop Certified",
+    issueDate: "Sep 13, 2026",
+    image: "./assets/certificates/cert_be10x.png",
+    description: "Certificate of Completion awarded by be10x for mastering AI tools & ChatGPT. Ability to create AI presentations in under 5 min, analyze data using AI in under 30 min, and code/debug using AI in under 10 min."
   },
   {
     id: "cert-n8n",
@@ -492,24 +519,6 @@ const CERTIFICATES_DATA = [
     issueDate: "Mar 10 - Apr 14, 2025",
     image: "./assets/certificates/cert_7_novitech_ml.png",
     description: "Intensive 30-day MasterClass (NT_B4ML374) in Machine Learning. Covered supervised and unsupervised learning algorithms, regression, classification, feature engineering, and model evaluation metrics."
-  },
-  {
-    id: "cert-kaggle-vibe",
-    title: "5-Day AI Agents: Intensive Vibe Coding",
-    issuer: "Kaggle | Google",
-    badge: "Badge Earned",
-    issueDate: "Jul 30, 2026",
-    image: "./assets/certificates/cert_8_kaggle_ai.png",
-    description: "Official Kaggle & Google AI certification for completing the intensive 5-day AI Agents course. Covered autonomous agent orchestration, multi-tool function calling, stateful memory graphs, and prompt engineering."
-  },
-  {
-    id: "cert-anudip-frontend",
-    title: "Advance Frontend Development",
-    issuer: "Anudip | Mettl Certified",
-    badge: "Grade A1 (249 Hrs)",
-    issueDate: "May 21, 2026",
-    image: "./assets/certificates/cert_9_anudip_frontend.png",
-    description: "Comprehensive 249-hour certification (Student ID: AF05103953) with Grade A1. In-depth mastery of advanced HTML5/CSS3, JavaScript ES6+, React component lifecycle, responsive design systems, and state management."
   }
 ];
 
