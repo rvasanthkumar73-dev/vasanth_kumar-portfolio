@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize scroll animations
   initScrollAnimations();
   
+  // Initialize terminal typewriter titles
+  initTypewriterTitles();
+  
   // Initialize ambient interactive canvas background
   initAmbientCanvas();
 
@@ -883,4 +886,118 @@ function initCertVault() {
 
   // Initialize view
   updateCoverflow();
+}
+
+/* --------------------------------------------------
+   Terminal Typewriter Animation for Section Titles
+   -------------------------------------------------- */
+function initTypewriterTitles() {
+  const titles = document.querySelectorAll('.section-title');
+  if (!titles.length) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Store original title text for layout preservation
+  titles.forEach(title => {
+    const textSpan = title.querySelector('.text-gradient') || title;
+    if (!title.dataset.originalText) {
+      title.dataset.originalText = textSpan.textContent.trim();
+    }
+  });
+
+  if (prefersReducedMotion) return;
+
+  function runTypewriter(title, force = false) {
+    const originalText = title.dataset.originalText;
+    if (!originalText) return;
+
+    // Skip if already animated unless forced (e.g., via navbar click)
+    if (title.dataset.hasTyped === 'true' && !force) return;
+    title.dataset.hasTyped = 'true';
+
+    // Clear any active animation timers on this title
+    if (title._typewriterTimer) clearInterval(title._typewriterTimer);
+    if (title._cursorTimer) clearTimeout(title._cursorTimer);
+
+    let textSpan = title.querySelector('.text-gradient');
+    if (!textSpan) {
+      textSpan = document.createElement('span');
+      textSpan.className = 'text-gradient';
+      title.innerHTML = '';
+      title.appendChild(textSpan);
+    }
+
+    let cursorSpan = title.querySelector('.title-cursor');
+    if (!cursorSpan) {
+      cursorSpan = document.createElement('span');
+      cursorSpan.className = 'title-cursor';
+      cursorSpan.textContent = '_';
+    }
+
+    cursorSpan.classList.remove('fade-out');
+    textSpan.textContent = '';
+    
+    if (cursorSpan.parentNode !== title) {
+      title.appendChild(cursorSpan);
+    }
+
+    let charIndex = 0;
+    const speed = 65; // 65ms per character (cinematic terminal cadence)
+
+    title._typewriterTimer = setInterval(() => {
+      charIndex++;
+      textSpan.textContent = originalText.substring(0, charIndex);
+
+      if (charIndex >= originalText.length) {
+        clearInterval(title._typewriterTimer);
+        title._typewriterTimer = null;
+
+        // Keep blinking cursor visible for ~700ms after text finishes before fade-out
+        title._cursorTimer = setTimeout(() => {
+          cursorSpan.classList.add('fade-out');
+          title._cursorTimer = setTimeout(() => {
+            if (cursorSpan.parentNode) {
+              cursorSpan.parentNode.removeChild(cursorSpan);
+            }
+          }, 350);
+        }, 700);
+      }
+    }, speed);
+  }
+
+  // Trigger via IntersectionObserver (threshold: 0.25)
+  if ('IntersectionObserver' in window) {
+    const observerOptions = {
+      root: null,
+      threshold: 0.25,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runTypewriter(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    titles.forEach(title => observer.observe(title));
+  } else {
+    titles.forEach(title => runTypewriter(title));
+  }
+
+  // Navbar link click immediate trigger
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function() {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        const title = targetSection.querySelector('.section-title');
+        if (title) {
+          runTypewriter(title, true);
+        }
+      }
+    });
+  });
 }
