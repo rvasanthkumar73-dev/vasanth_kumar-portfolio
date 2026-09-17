@@ -6,6 +6,12 @@
   <meta name="description" content="Portfolio of Vasanth Kumar R - Aspiring Full Stack Developer & AI/ML Engineer. Showcasing computer vision, natural language processing, and automation agent projects.">
   <title>Vasanth Kumar R | Full Stack Developer & AI/ML Engineer</title>
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Spline 3D Viewer Web Component -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@latest/build/spline-viewer.js"></script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,73 +83,67 @@
   <main class="content-wrapper">
 
     <!-- 1. Hero Section -->
-    <section id="hero" class="hero-section">
-      <div class="container hero-container">
-        <div class="hero-text-content fade-in-up">
-          <div class="hero-badge-container">
-            <span class="hero-mini-title">Computer Science Graduate 2026</span>
-            <span class="badge-work hero-mobile-badge">
-              <span class="badge-dot"></span>
-              <span class="badge-text">Open to Work</span>
-            </span>
-          </div>
-          <h1 class="hero-title">
-            Hi, I am <span class="text-gradient">Vasanth Kumar R</span>
-          </h1>
-          <p class="hero-subtitle">Aspiring Full Stack Developer | AI/ML Engineering Focus</p>
-          <p class="hero-tagline">Building intelligent systems, computer vision models, and autonomous agents.</p>
-          
-          <div class="hero-ctas">
-            <a href="#projects" class="btn btn-primary">
-              <span>View Projects</span>
-              <i class="fa-solid fa-arrow-down-long"></i>
-            </a>
-            <a href="#" id="show-resume-btn" class="btn btn-secondary">
-              <span>Show Resume</span>
-              <i class="fa-solid fa-file-pdf"></i>
-            </a>
-          </div>
+    <section id="hero" class="hero-section flex flex-col items-center justify-center text-center py-10 sm:py-16 px-4 overflow-x-hidden relative">
+      
+      <!-- Side Cyber Glow Accents -->
+      <div class="w-[320px] h-[320px] rounded-full bg-cyan-500/10 blur-[120px] -left-20 top-1/3 pointer-events-none absolute"></div>
+      <div class="w-[320px] h-[320px] rounded-full bg-purple-600/10 blur-[120px] -right-20 top-1/3 pointer-events-none absolute"></div>
+
+      <!-- Lead Subtext ("Hi, I am") with Ping Dot & Minimal mb-1 Margin -->
+      <p class="text-lg sm:text-2xl font-mono text-cyan-400/90 tracking-widest uppercase mb-1 flex items-center justify-center gap-2 fade-in-up active">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Hi, I am
+      </p>
+
+      <!-- Spline 3D Particle Name Centerpiece -->
+      <h1 class="sr-only">Vasanth Kumar R</h1>
+      <div class="w-full max-w-4xl h-[260px] sm:h-[340px] md:h-[380px] mx-auto flex items-center justify-center relative overflow-visible my-0 pointer-events-auto spline-hero-wrapper fade-in-up active">
+        <spline-viewer url="https://prod.spline.design/wtLLrqtCooNr1Z1F/scene.splinecode" loading-anim-type="none" style="width: 100%; height: 100%; background: transparent;" touch-action="pan-y"></spline-viewer>
+      </div>
+
+      <!-- Role & Purpose Subheadline -->
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-200 to-purple-400 mt-2 fade-in-up active">Aspiring Full-Stack & AI/ML Engineer</h2>
+      <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto mt-3 leading-relaxed fade-in-up active">Building autonomous workflows, intelligent deep learning models, and interactive digital systems that solve real-world problems.</p>
+
+      <!-- Call-To-Action Group (Edge-Rounded Pills) -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 fade-in-up active">
+        <a href="#projects" class="rounded-full px-7 py-3 font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 transition-all duration-300">Explore Projects →</a>
+        <button id="show-resume-btn" class="rounded-full px-7 py-3 font-medium text-slate-200 border border-slate-700 bg-slate-900/60 hover:bg-slate-800 hover:border-slate-500 hover:scale-105 transition-all duration-300 shadow-md">View Resume 📄</button>
+      </div>
+
+      <!-- Luminous Neon Cyan / Electric 3D Floating Metric Counters -->
+      <div id="hero-metrics" class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10 max-w-4xl w-full mx-auto mt-12 sm:mt-16 px-4 fade-in-up active">
+        
+        <!-- Metric 1: Projects Built -->
+        <div class="flex flex-col items-center justify-center text-center">
+          <div class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text" data-target="5" data-suffix="+">0+</div>
+          <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Projects Built</div>
         </div>
 
-        <div class="hero-visual fade-in-up delay-200">
-          <div class="interactive-card hero-glass-card">
-            <div class="card-glow-bg"></div>
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">status.py</span>
-            </div>
-            <div class="terminal-body font-mono">
-              <p class="line-comment"># Interactive developer overview</p>
-              <p><span class="keyword">class</span> <span class="class-name">Developer</span>:</p>
-              <p class="indent-1"><span class="def">def</span> <span class="func">__init__</span>(self):</p>
-              <p class="indent-2">self.name = <span class="string">"Vasanth Kumar R"</span></p>
-              <p class="indent-2">self.role = <span class="string">"Full Stack / AI-ML"</span></p>
-              <p class="indent-2">self.cgpa = <span class="number">8.33</span></p>
-              <p class="indent-2">self.graduating = <span class="number">2026</span></p>
-              <p class="indent-2">self.focus = [<span class="string">"Deep Learning"</span>, <span class="string">"Agents"</span>]</p>
-              <p class="indent-1"><span class="def">def</span> <span class="func">get_status</span>(self):</p>
-              <p class="indent-2"><span class="keyword">return</span> <span class="string">"Actively seeking engineering roles"</span></p>
-              <p class="line-output">&gt;&gt;&gt; Developer().get_status()</p>
-              <p class="line-result">"Actively seeking engineering roles"</p>
-            </div>
-          </div>
+        <!-- Metric 2: Certifications Earned -->
+        <div class="flex flex-col items-center justify-center text-center">
+          <div class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text" data-target="10" data-suffix="+">0+</div>
+          <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Certifications Earned</div>
         </div>
+
+        <!-- Metric 3: Tools & Technologies -->
+        <div class="flex flex-col items-center justify-center text-center">
+          <div class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text" data-target="20" data-suffix="+">0+</div>
+          <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Tools &amp; Technologies</div>
+        </div>
+
+        <!-- Metric 4: Continuous Learner -->
+        <div class="flex flex-col items-center justify-center text-center">
+          <div class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text" data-target="100" data-suffix="%">0%</div>
+          <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Continuous Learner</div>
+        </div>
+
       </div>
-      <div class="scroll-indicator-container">
-        <a href="#about" class="scroll-indicator" aria-label="Scroll Down">
-          <span class="mouse">
-            <span class="wheel"></span>
-          </span>
-          <span class="arrow"></span>
-        </a>
-      </div>
+
     </section>
 
     <!-- 2. About Section -->
     <section id="about" class="about-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">About Me</span></h2>
         <div class="about-grid">
           <div class="about-text fade-in-up delay-100">
@@ -186,7 +186,7 @@
 
     <!-- 3. Technical Skills -->
     <section id="skills" class="skills-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">Technical Skills</span></h2>
         <p class="section-desc fade-in-up delay-100">A curation of languages, frameworks, AI libraries, and tools I use to build systems.</p>
 
@@ -406,7 +406,7 @@
 
     <!-- 4. Featured Projects -->
     <section id="projects" class="projects-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">Featured Projects</span></h2>
         <p class="section-desc fade-in-up delay-100">Click links to view interactive codebases and live deployments.</p>
 
@@ -572,7 +572,7 @@
 
     <!-- 5. Certifications -->
     <section id="certifications" class="certifications-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">Certifications</span></h2>
         <p class="section-desc fade-in-up delay-100">Professional credentials, courses, and certifications completed.</p>
 
@@ -582,7 +582,7 @@
 
     <!-- 6. Experience -->
     <section id="experience" class="experience-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">Professional Experience</span></h2>
 
         <div class="timeline-container">
@@ -609,7 +609,7 @@
 
     <!-- 7. Education -->
     <section id="education" class="education-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">Education</span></h2>
 
         <div class="education-grid">
@@ -650,7 +650,7 @@
 
     <!-- 8. Contact & Footer -->
     <section id="contact" class="contact-section section-padding scroll-spy">
-      <div class="container">
+      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient">Get In Touch</span></h2>
         <p class="section-desc fade-in-up delay-100">Connect with me for developer opportunities, technical projects, or collaborations.</p>
 

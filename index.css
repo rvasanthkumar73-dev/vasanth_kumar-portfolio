@@ -135,9 +135,24 @@ body {
 /* Common Layout Components */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 80rem; /* 1280px / max-w-7xl */
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 }
 
 .section-padding {
@@ -469,23 +484,59 @@ body {
 }
 
 /* --------------------------------------------------
-   2. Hero Section
+   2. Hero Section & Spline Watermark Removal
    -------------------------------------------------- */
+spline-viewer::shadow #logo,
+spline-viewer::shadow a[href*="spline.design"],
+spline-viewer::shadow #spline-badge,
+spline-viewer::shadow .spline-watermark,
+#hero a[href*="spline.design"],
+.spline-watermark {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .hero-section {
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-top: 8rem;
-  padding-bottom: 4rem;
+  justify-content: center;
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 3rem;
   z-index: 10;
+  overflow-x: hidden;
 }
 
-.hero-container {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 4rem;
+.spline-hero-wrapper {
+  touch-action: pan-y !important;
+  pointer-events: auto !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.spline-hero-wrapper spline-viewer,
+.spline-hero-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  pointer-events: auto !important;
+  touch-action: pan-y !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.cyan-metric-text {
+  background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 30%, #38bdf8 65%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.4));
 }
 
 .hero-badge-container {

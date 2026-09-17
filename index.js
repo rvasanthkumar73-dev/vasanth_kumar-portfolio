@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize terminal typewriter titles
   initTypewriterTitles();
   
+  // Initialize hero golden metric count-up
+  initHeroMetricsCountUp();
+  
   // Initialize ambient interactive canvas background
   initAmbientCanvas();
 
@@ -1000,4 +1003,92 @@ function initTypewriterTitles() {
       }
     });
   });
+}
+
+/* --------------------------------------------------
+   Hero Luminous Electric Metrics Count-Up & Spline Clean
+   -------------------------------------------------- */
+function initHeroMetricsCountUp() {
+  const container = document.getElementById('hero-metrics');
+  
+  // Inject style specifically into splineViewer.shadowRoot to hide only the logo/watermark link
+  function injectSplineShadowStyle() {
+    const splineViewer = document.querySelector('spline-viewer');
+    if (splineViewer) {
+      function applyStyle() {
+        if (splineViewer.shadowRoot) {
+          const existing = splineViewer.shadowRoot.querySelector('#clean-spline-style');
+          if (!existing) {
+            const style = document.createElement('style');
+            style.id = 'clean-spline-style';
+            style.textContent = '#logo, #watermark, a[href*="spline.design"] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }';
+            splineViewer.shadowRoot.appendChild(style);
+          }
+        }
+      }
+      applyStyle();
+      splineViewer.addEventListener('load', applyStyle);
+    }
+  }
+
+  // Run shadow DOM injection
+  injectSplineShadowStyle();
+  setTimeout(injectSplineShadowStyle, 500);
+  setTimeout(injectSplineShadowStyle, 1500);
+  setTimeout(injectSplineShadowStyle, 3000);
+
+  if (!container) return;
+
+  const counters = container.querySelectorAll('.cyan-metric-text[data-target], [data-target]');
+  if (!counters.length) return;
+
+  let hasAnimated = false;
+
+  function animateCounters() {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    const duration = 1800; // ~1.8 seconds smooth cubic ease-out
+    const startTime = performance.now();
+
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+      counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target, 10);
+        const suffix = counter.dataset.suffix || '';
+        const currentValue = Math.floor(easeProgress * target);
+        counter.textContent = `${currentValue}${suffix}`;
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        counters.forEach(counter => {
+          const target = counter.dataset.target;
+          const suffix = counter.dataset.suffix || '';
+          counter.textContent = `${target}${suffix}`;
+        });
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(container);
+  } else {
+    animateCounters();
+  }
 }
