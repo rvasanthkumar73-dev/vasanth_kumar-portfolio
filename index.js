@@ -5,16 +5,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize navigation logic
   initNavigation();
-  
+
   // Initialize scroll animations
   initScrollAnimations();
-  
+
   // Initialize terminal typewriter titles
   initTypewriterTitles();
-  
+
   // Initialize hero golden metric count-up
   initHeroMetricsCountUp();
-  
+
   // Initialize ambient interactive canvas background
   initAmbientCanvas();
 
@@ -55,7 +55,7 @@ function initNavigation() {
     } else {
       navbar.classList.remove('scrolled');
     }
-    
+
     // Scroll Spy active navigation state
     let currentSectionId = '';
     const scrollPosition = window.scrollY + 150; // offset for sticky nav
@@ -95,14 +95,14 @@ function initNavigation() {
 
   // Smooth scroll adjust for sticky header anchor clicks
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
-      
+
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        
+
         // Hide mobile drawer if click is inside it
         hamburger.classList.remove('open');
         mobileDrawer.classList.remove('open');
@@ -126,7 +126,7 @@ function initNavigation() {
    -------------------------------------------------- */
 function initScrollAnimations() {
   const elements = document.querySelectorAll('.fade-in-up');
-  
+
   if ('IntersectionObserver' in window) {
     const observerOptions = {
       root: null,
@@ -203,10 +203,10 @@ function initAmbientCanvas() {
     const scale = window.devicePixelRatio || 1;
     canvas.width = window.innerWidth * scale;
     canvas.height = window.innerHeight * scale;
-    
+
     // Scale drawings back down to visual space
     ctx.scale(scale, scale);
-    
+
     // Reset config and rebuild particles
     config = getConfig();
     initParticles();
@@ -220,7 +220,7 @@ function initAmbientCanvas() {
       this.vx = (Math.random() - 0.5) * config.maxSpeed;
       this.vy = (Math.random() - 0.5) * config.maxSpeed;
       this.radius = Math.random() * config.particleRadius + 0.8;
-      
+
       // Select between cyber cyan and neon violet
       this.color = Math.random() > 0.5 ? 'rgba(6, 182, 212, ' : 'rgba(139, 92, 246, ';
       this.baseOpacity = Math.random() * 0.2 + 0.1; // quiet, theatrical ambient glow
@@ -243,12 +243,12 @@ function initAmbientCanvas() {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (dist < mouse.radius) {
           const force = (mouse.radius - dist) / mouse.radius;
           const forceX = (dx / dist) * force * 0.6;
           const forceY = (dy / dist) * force * 0.6;
-          
+
           this.x -= forceX;
           this.y -= forceY;
         }
@@ -298,17 +298,17 @@ function initAmbientCanvas() {
 
   function animate() {
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    
+
     // Draw connections and update nodes
     connectParticles();
     particles.forEach(particle => particle.update());
-    
+
     animationId = requestAnimationFrame(animate);
   }
 
   // Event Listeners
   window.addEventListener('resize', resizeCanvas);
-  
+
   if (!isTouchDevice) {
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
@@ -419,22 +419,22 @@ function initSkills3D() {
   const cards = document.querySelectorAll('.skill-card-3d');
   cards.forEach(card => {
     const inner = card.querySelector('.skill-card-3d-inner');
-    
+
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
+
       // Calculate rotation: max 20 degrees in either direction
       const rotateX = ((centerY - y) / centerY) * 20;
       const rotateY = ((x - centerX) / centerX) * 20;
-      
+
       inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
       inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
@@ -826,7 +826,7 @@ function initCertVault() {
       const rotateY = ((x - centerX) / centerX) * 10;
 
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      
+
       if (glow) {
         glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(139, 92, 246, 0.4), transparent 70%)`;
         glow.style.opacity = '1';
@@ -948,7 +948,7 @@ function initTypewriterTitles() {
 
     cursorSpan.classList.remove('fade-out');
     textSpan.textContent = '';
-    
+
     if (cursorSpan.parentNode !== title) {
       title.appendChild(cursorSpan);
     }
@@ -1000,7 +1000,7 @@ function initTypewriterTitles() {
 
   // Navbar link click immediate trigger
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function() {
+    anchor.addEventListener('click', function () {
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
       const targetSection = document.querySelector(targetId);
@@ -1019,7 +1019,7 @@ function initTypewriterTitles() {
    -------------------------------------------------- */
 function initHeroMetricsCountUp() {
   const container = document.getElementById('hero-metrics');
-  
+
   // Inject style specifically into splineViewer.shadowRoot to hide only the logo/watermark link
   function injectSplineShadowStyle() {
     const splineViewer = document.querySelector('spline-viewer');
@@ -1139,10 +1139,10 @@ function initFooterRobotObserver() {
 function optimizeSplineDPR() {
   const maxDPR = window.devicePixelRatio > 2 ? 1.5 : Math.min(window.devicePixelRatio || 1, 1.5);
   const splineViewers = document.querySelectorAll('spline-viewer');
-  
+
   splineViewers.forEach(viewer => {
     viewer.setAttribute('dpr', maxDPR.toString());
-    
+
     const enforceDPR = () => {
       if (viewer.shadowRoot) {
         const canvas = viewer.shadowRoot.querySelector('canvas');
@@ -1167,7 +1167,7 @@ function initProjectVideoObserver() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          projectVideo.play().catch(() => {});
+          projectVideo.play().catch(() => { });
         } else {
           projectVideo.pause();
         }
