@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize infinite horizontal 3D certificate vault & lightbox modal
   initCertVault();
+
+  // Initialize viewport-aware footer robot rendering
+  initFooterRobotObserver();
+
+  // Optimize mobile hardware acceleration and Spline DPR
+  optimizeSplineDPR();
 });
 
 /* --------------------------------------------------
@@ -121,8 +127,8 @@ function initScrollAnimations() {
   if ('IntersectionObserver' in window) {
     const observerOptions = {
       root: null,
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px' // triggers slightly before entering viewport fully
+      threshold: 0.01,
+      rootMargin: '100px 0px 100px 0px' // triggers instantly as elements approach viewport
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -945,7 +951,7 @@ function initTypewriterTitles() {
     }
 
     let charIndex = 0;
-    const speed = 65; // 65ms per character (cinematic terminal cadence)
+    const speed = 85; // 85ms per character (relaxed, measured natural terminal cadence)
 
     title._typewriterTimer = setInterval(() => {
       charIndex++;
@@ -1091,4 +1097,58 @@ function initHeroMetricsCountUp() {
   } else {
     animateCounters();
   }
+}
+
+/* --------------------------------------------------
+   Viewport-Aware Footer Bot Rendering (GPU Optimization & Jitter Fix)
+   -------------------------------------------------- */
+function initFooterRobotObserver() {
+  const robotContainer = document.querySelector('.contact-robot-container');
+  const iframeWrapper = document.querySelector('.robot-iframe-wrapper');
+  if (!robotContainer || !iframeWrapper) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          iframeWrapper.style.display = 'block';
+          iframeWrapper.style.visibility = 'visible';
+          iframeWrapper.style.pointerEvents = 'auto';
+        } else {
+          iframeWrapper.style.display = 'none';
+          iframeWrapper.style.visibility = 'hidden';
+          iframeWrapper.style.pointerEvents = 'none';
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '200px 0px 200px 0px',
+      threshold: 0
+    });
+
+    observer.observe(robotContainer);
+  }
+}
+
+/* --------------------------------------------------
+   Mobile Hardware Acceleration & DPR Cap for WebGL
+   -------------------------------------------------- */
+function optimizeSplineDPR() {
+  const maxDPR = window.devicePixelRatio > 2 ? 1.5 : Math.min(window.devicePixelRatio || 1, 1.5);
+  const splineViewers = document.querySelectorAll('spline-viewer');
+  
+  splineViewers.forEach(viewer => {
+    viewer.setAttribute('dpr', maxDPR.toString());
+    
+    const enforceDPR = () => {
+      if (viewer.shadowRoot) {
+        const canvas = viewer.shadowRoot.querySelector('canvas');
+        if (canvas) {
+          canvas.style.touchAction = 'pan-y';
+        }
+      }
+    };
+    enforceDPR();
+    viewer.addEventListener('load', enforceDPR);
+  });
 }

@@ -43,6 +43,11 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+canvas {
+  touch-action: pan-y !important;
 }
 
 body {
@@ -270,8 +275,8 @@ body {
    -------------------------------------------------- */
 .fade-in-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transform: translateY(20px);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in-up.active {
@@ -279,11 +284,11 @@ body {
   transform: translateY(0);
 }
 
-.delay-100 { transition-delay: 0.1s; }
-.delay-200 { transition-delay: 0.2s; }
-.delay-300 { transition-delay: 0.3s; }
-.delay-400 { transition-delay: 0.4s; }
-.delay-500 { transition-delay: 0.5s; }
+.delay-100 { transition-delay: 0.02s; }
+.delay-200 { transition-delay: 0.04s; }
+.delay-300 { transition-delay: 0.06s; }
+.delay-400 { transition-delay: 0.08s; }
+.delay-500 { transition-delay: 0.1s; }
 
 /* --------------------------------------------------
    1. Edge-to-Edge Navigation Bar
@@ -2072,6 +2077,9 @@ spline-viewer::shadow .spline-watermark,
   display: flex;
   justify-content: center;
   align-items: center;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .robot-iframe-wrapper {
@@ -2081,6 +2089,9 @@ spline-viewer::shadow .spline-watermark,
   width: 120%;
   height: 100%;
   pointer-events: auto;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .robot-iframe-wrapper iframe {
@@ -2088,6 +2099,9 @@ spline-viewer::shadow .spline-watermark,
   height: 100%;
   border: none;
   background: transparent;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   clip-path: polygon(
     0% 0%, 
     100% 0%, 
