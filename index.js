@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Optimize mobile hardware acceleration and Spline DPR
   optimizeSplineDPR();
+
+  // Initialize viewport-aware project video observer
+  initProjectVideoObserver();
 });
 
 /* --------------------------------------------------
@@ -1151,4 +1154,30 @@ function optimizeSplineDPR() {
     enforceDPR();
     viewer.addEventListener('load', enforceDPR);
   });
+}
+
+/* --------------------------------------------------
+   Viewport-Aware Project Demo Video Playback Throttling
+   -------------------------------------------------- */
+function initProjectVideoObserver() {
+  const projectVideo = document.querySelector('.projects-section video');
+  if (!projectVideo) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          projectVideo.play().catch(() => {});
+        } else {
+          projectVideo.pause();
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '300px 0px 300px 0px',
+      threshold: 0
+    });
+
+    observer.observe(projectVideo);
+  }
 }

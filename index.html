@@ -456,26 +456,44 @@
                 </div>
               </div>
               <div class="project-visual-side">
-                <div class="visual-mockup terminal-mockup">
-                  <div class="mockup-header">
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-tab-title">sentinel_fuser.py</span>
-                  </div>
-                  <div class="mockup-code font-mono">
-                    <p><span class="keyword">import</span> asyncio</p>
-                    <p><span class="keyword">import</span> torch</p>
-                    <p class="line-comment"># Fuses multi-source tensor features</p>
-                    <p><span class="def">async def</span> <span class="func">fuse_modalities</span>(cv_feat, audio_feat, text_feat):</p>
-                    <p class="indent-1">combined = torch.cat([cv_feat, audio_feat, text_feat], dim=-1)</p>
-                    <p class="indent-1">outputs = model_fuser(combined)</p>
-                    <p class="indent-1">engagement = torch.softmax(outputs, dim=-1)</p>
-                    <p class="indent-1"><span class="keyword">return</span> {</p>
-                    <p class="indent-2"><span class="string">"engagement_score"</span>: engagement[<span class="number">0</span>].item(),</p>
-                    <p class="indent-2"><span class="string">"status"</span>: <span class="string">"active_monitoring"</span></p>
-                    <p class="indent-1">}</p>
-                    <p class="line-output"># Stream initialized on ws://localhost/stream</p>
+                <div class="relative w-full lg:scale-105 xl:scale-110 transition-transform duration-300">
+                  <!-- Outer Glow & Ambient Border Frame -->
+                  <div class="relative rounded-2xl sm:rounded-3xl p-1 sm:p-1.5 bg-gradient-to-b from-cyan-500/30 via-slate-800/50 to-purple-500/20 shadow-[0_0_35px_rgba(6,182,212,0.18)] border border-cyan-500/30">
+                    
+                    <!-- Inner Dark Frame Surface -->
+                    <div class="rounded-[14px] sm:rounded-[22px] overflow-hidden bg-slate-950/90 backdrop-blur-xl">
+                      
+                      <!-- Minimalist Header Bar -->
+                      <div class="flex items-center justify-between px-4 py-2.5 bg-slate-900/80 border-b border-slate-800/80 select-none">
+                        <div class="flex items-center gap-2">
+                          <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                          <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                        </div>
+                        <span class="text-xs font-mono font-medium text-slate-300 tracking-wider uppercase">Project Demo</span>
+                        <div class="w-8"></div>
+                      </div>
+
+                      <!-- Video Display Canvas -->
+                      <div class="relative w-full aspect-video bg-black overflow-hidden">
+                        <video
+                          src="videos/Final_year_project_demo.mp4"
+                          autoplay
+                          loop
+                          muted
+                          playsinline
+                          webkit-playsinline
+                          disablepictureinpicture
+                          disableremoteplayback
+                          preload="auto"
+                          class="w-full h-full object-cover pointer-events-none select-none will-change-transform"
+                        ></video>
+                        
+                        <!-- Subtle glass gradient sheen -->
+                        <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/20 via-transparent to-transparent"></div>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
