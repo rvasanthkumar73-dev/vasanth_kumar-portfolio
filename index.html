@@ -96,7 +96,7 @@
 
     <!-- 1. Hero Section -->
     <section id="hero"
-      class="hero-section flex flex-col items-center justify-center text-center py-10 sm:py-16 px-4 overflow-x-hidden relative">
+      class="hero-section flex flex-col items-center justify-center text-center pt-24 sm:pt-28 md:py-16 px-4 overflow-x-hidden relative">
 
       <!-- Side Cyber Glow Accents -->
       <div
@@ -108,19 +108,20 @@
 
       <!-- Oversized Floating Cinematic Header ("Hi, I am") -->
       <div
-        class="flex items-center justify-center -mb-6 sm:-mb-10 md:-mb-14 z-10 relative pointer-events-none select-none fade-in-up active">
+        class="flex items-center justify-center mt-2 sm:mt-4 md:mt-0 -mb-4 sm:-mb-8 md:-mb-14 z-10 relative pointer-events-none select-none fade-in-up active">
         <h2
-          class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-b from-white via-slate-100 to-slate-400/70 bg-clip-text text-transparent drop-shadow-[0_4px_24px_rgba(56,189,248,0.25)] filter">
+          class="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold sm:font-extrabold tracking-tight bg-gradient-to-b from-white via-slate-100 to-slate-400/70 bg-clip-text text-transparent drop-shadow-[0_4px_24px_rgba(56,189,248,0.25)] filter text-center">
           Hi, I am
         </h2>
       </div>
 
       <!-- Spline 3D Particle Name Centerpiece -->
       <h1 class="sr-only">Vasanth Kumar R</h1>
-      <div
-        class="w-full max-w-4xl h-[260px] sm:h-[340px] md:h-[380px] mx-auto flex items-center justify-center relative overflow-visible my-0 pointer-events-auto spline-hero-wrapper fade-in-up active">
-        <spline-viewer url="https://prod.spline.design/wtLLrqtCooNr1Z1F/scene.splinecode" loading-anim-type="none"
-          style="width: 100%; height: 100%; background: transparent;" touch-action="pan-y"></spline-viewer>
+      <div class="w-full flex items-center justify-center overflow-hidden my-[-1.5rem] sm:my-0 fade-in-up active">
+        <div class="scale-[0.52] sm:scale-[0.78] md:scale-100 origin-center transition-transform duration-300 w-full max-w-[900px] h-[160px] sm:h-[240px] md:h-[340px] flex items-center justify-center pointer-events-auto spline-hero-wrapper">
+          <spline-viewer url="https://prod.spline.design/wtLLrqtCooNr1Z1F/scene.splinecode" loading-anim-type="none"
+            style="width: 100%; height: 100%; background: transparent;" touch-action="pan-y"></spline-viewer>
+        </div>
       </div>
 
       <!-- Role & Purpose Subheadline -->
