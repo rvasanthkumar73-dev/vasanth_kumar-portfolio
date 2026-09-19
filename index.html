@@ -33,6 +33,32 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="index.css?v=certvault4">
+  <style>
+    .contact-morph-btn {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .contact-morph-btn .contact-dot {
+      transition: transform 0.25s ease, opacity 0.2s ease, width 0.25s ease, margin 0.25s ease;
+    }
+    .contact-morph-btn .contact-arrow {
+      transform: translateX(-8px);
+      opacity: 0;
+      max-width: 0;
+      transition: transform 0.25s ease, opacity 0.2s ease, max-width 0.25s ease;
+    }
+    .contact-morph-btn:hover .contact-dot {
+      transform: scale(0);
+      opacity: 0;
+      width: 0;
+      margin-right: 0;
+    }
+    .contact-morph-btn:hover .contact-arrow {
+      transform: translateX(0);
+      opacity: 1;
+      max-width: 1rem;
+      margin-left: 0.25rem;
+    }
+  </style>
 </head>
 
 <body class="dark-theme">
@@ -48,8 +74,12 @@
   <!-- Header / Navigation -->
   <header class="navbar">
     <div class="navbar-container">
-      <a href="#hero" class="nav-logo">
-        <span class="logo-accent">&lt;</span>Vasanth<span class="logo-accent">.R /&gt;</span>
+      <a href="#hero" id="brand-tag" class="group flex items-center font-mono text-sm sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
+        <span class="text-cyan-400">&lt;</span>
+        <span id="scramble-target" class="text-white font-sans font-extrabold tracking-normal px-0.5 inline-block" data-value="Vasanth Kumar">
+          Vasanth Kumar
+        </span>
+        <span class="text-cyan-400">.R/&gt;</span>
       </a>
 
       <!-- Desktop Navigation Links -->
@@ -60,7 +90,13 @@
         <a href="#certifications" class="nav-link">Certifications</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#education" class="nav-link">Education</a>
-        <a href="#contact" class="nav-link btn-contact">Contact</a>
+        <a href="#contact" class="contact-morph-btn relative inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-cyan-400 hover:text-slate-950 border border-slate-700/80 hover:border-cyan-300 shadow-sm transition-all duration-300 overflow-hidden shrink-0">
+          <span class="contact-dot w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] mr-1.5"></span>
+          <span>Contact</span>
+          <svg class="contact-arrow w-3.5 h-3.5 overflow-hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
       </nav>
 
       <!-- Badge & Mobile Navigation Control -->
@@ -87,7 +123,13 @@
       <a href="#certifications" class="mobile-nav-link">Certifications</a>
       <a href="#experience" class="mobile-nav-link">Experience</a>
       <a href="#education" class="mobile-nav-link">Education</a>
-      <a href="#contact" class="mobile-nav-link">Contact</a>
+      <a href="#contact" class="mobile-nav-link contact-morph-btn relative inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-cyan-400 hover:text-slate-950 border border-slate-700/80 hover:border-cyan-300 shadow-sm transition-all duration-300 overflow-hidden shrink-0">
+        <span class="contact-dot w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] mr-1.5"></span>
+        <span>Contact</span>
+        <svg class="contact-arrow w-3.5 h-3.5 overflow-hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
     </nav>
   </div>
 
@@ -1057,6 +1099,40 @@
 
   <!-- Main JavaScript Logic -->
   <script src="index.js?v=certvault4"></script>
+  <script>
+  (function() {
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+    const brandEl = document.getElementById("brand-tag");
+    const target = document.getElementById("scramble-target");
+    if (!brandEl || !target) return;
+
+    let interval = null;
+
+    brandEl.addEventListener("mouseenter", () => {
+      let iteration = 0;
+      const originalText = target.dataset.value;
+      clearInterval(interval);
+
+      interval = setInterval(() => {
+        target.innerText = originalText
+          .split("")
+          .map((letter, index) => {
+            if (letter === " ") return " ";
+            if (index < iteration) {
+              return originalText[index];
+            }
+            return letters[Math.floor(Math.random() * letters.length)];
+          })
+          .join("");
+
+        if (iteration >= originalText.length) {
+          clearInterval(interval);
+        }
+        iteration += 1 / 2;
+      }, 28);
+    });
+  })();
+  </script>
 </body>
 
 </html>
