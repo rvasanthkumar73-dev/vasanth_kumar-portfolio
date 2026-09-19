@@ -117,8 +117,9 @@
 
       <!-- Spline 3D Particle Name Centerpiece -->
       <h1 class="sr-only">Vasanth Kumar R</h1>
-      <div class="w-full flex items-center justify-center overflow-hidden my-[-1.5rem] sm:my-0 fade-in-up active">
-        <div class="scale-[0.52] sm:scale-[0.78] md:scale-100 origin-center transition-transform duration-300 w-full max-w-[900px] h-[160px] sm:h-[240px] md:h-[340px] flex items-center justify-center pointer-events-auto spline-hero-wrapper">
+      <div class="w-full flex items-center justify-center overflow-visible my-0 py-0 fade-in-up active">
+        <div
+          class="scale-[0.44] xs:scale-[0.52] sm:scale-[0.72] md:scale-100 origin-center w-[780px] h-[190px] sm:h-[220px] md:h-[260px] flex items-center justify-center shrink-0 overflow-visible pointer-events-auto spline-hero-wrapper">
           <spline-viewer url="https://prod.spline.design/wtLLrqtCooNr1Z1F/scene.splinecode" loading-anim-type="none"
             style="width: 100%; height: 100%; background: transparent;" touch-action="pan-y"></spline-viewer>
         </div>
@@ -132,33 +133,38 @@
       </h2>
 
       <script>
-        (function() {
-          const text = "Aspiring Full-Stack & AI/ML Engineer";
+        (function () {
           const el = document.getElementById("typewriter-tagline");
           const cursor = document.getElementById("typewriter-cursor");
           if (!el) return;
 
-          let idx = 0;
-          const speed = 85; // Natural, deliberate typing pace
+          const phrase = "Aspiring Full-Stack & AI/ML Engineer";
+          el.textContent = "";
+          let i = 0;
 
-          function runTypewriter() {
-            if (idx < text.length) {
-              el.textContent += text.charAt(idx);
-              idx++;
-              setTimeout(runTypewriter, speed);
+          // Clean single timeout chain ensures smooth constant pacing
+          function step() {
+            if (i < phrase.length) {
+              el.textContent += phrase[i];
+              i++;
+              setTimeout(step, 65); // Steady, natural pace with zero jumping
             } else {
-              // Fade cursor out 3 seconds after completion to keep design clean
+              // Cursor blinks 3 times after finish, then is permanently removed from the DOM
               setTimeout(() => {
-                if (cursor) cursor.style.opacity = "0";
-              }, 3000);
+                if (cursor) {
+                  cursor.style.transition = "opacity 0.4s ease";
+                  cursor.style.opacity = "0";
+                  setTimeout(() => cursor.remove(), 450);
+                }
+              }, 1200);
             }
           }
 
-          // Run without delaying initial paint
-          if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", runTypewriter);
+          // Start smoothly once page finishes loading
+          if (document.readyState === "complete") {
+            setTimeout(step, 400);
           } else {
-            runTypewriter();
+            window.addEventListener("load", () => setTimeout(step, 400));
           }
         })();
       </script>
@@ -182,7 +188,7 @@
 
         <!-- Metric 1: Projects Built -->
         <div class="flex flex-col items-center justify-center text-center">
-          <div
+          <div id="counter-projects"
             class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text"
             data-target="5" data-suffix="+">0+</div>
           <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Projects Built</div>
@@ -190,7 +196,7 @@
 
         <!-- Metric 2: Certifications Earned -->
         <div class="flex flex-col items-center justify-center text-center">
-          <div
+          <div id="counter-certs"
             class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text"
             data-target="10" data-suffix="+">0+</div>
           <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Certifications Earned</div>
@@ -198,7 +204,7 @@
 
         <!-- Metric 3: Tools & Technologies -->
         <div class="flex flex-col items-center justify-center text-center">
-          <div
+          <div id="counter-tools"
             class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text"
             data-target="20" data-suffix="+">0+</div>
           <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Tools &amp; Technologies</div>
@@ -206,7 +212,7 @@
 
         <!-- Metric 4: Continuous Learner -->
         <div class="flex flex-col items-center justify-center text-center">
-          <div
+          <div id="counter-learner"
             class="font-black text-3xl sm:text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent filter drop-shadow(0 0 16px rgba(6,182,212,0.4)) cyan-metric-text"
             data-target="100" data-suffix="%">0%</div>
           <div class="text-xs font-mono tracking-widest text-cyan-300/80 mt-1 uppercase">Continuous Learner</div>
@@ -219,7 +225,7 @@
     <!-- 2. About Section -->
     <section id="about" class="about-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">About Me</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">About Me</span></h2>
         <div class="about-grid">
           <div class="about-text fade-in-up delay-100">
             <p class="lead">
@@ -266,7 +272,7 @@
     <!-- 3. Technical Skills -->
     <section id="skills" class="skills-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">Technical Skills</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Technical Skills</span></h2>
         <p class="section-desc fade-in-up delay-100">A curation of languages, frameworks, AI libraries, and tools I use
           to build systems.</p>
 
@@ -525,7 +531,8 @@
     <!-- 4. Featured Projects -->
     <section id="projects" class="projects-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">Featured Projects</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Featured Projects</span>
+        </h2>
         <p class="section-desc fade-in-up delay-100">Click links to view interactive codebases and live deployments.</p>
 
         <div class="projects-list">
@@ -849,7 +856,7 @@
     <!-- 5. Certifications -->
     <section id="certifications" class="certifications-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">Certifications</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Certifications</span></h2>
         <p class="section-desc fade-in-up delay-100">Professional credentials, courses, and certifications completed.
         </p>
 
@@ -860,7 +867,8 @@
     <!-- 6. Experience -->
     <section id="experience" class="experience-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">Professional Experience</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Professional
+            Experience</span></h2>
 
         <div class="timeline-container">
           <div class="timeline-line"></div>
@@ -889,7 +897,7 @@
     <!-- 7. Education -->
     <section id="education" class="education-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">Education</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Education</span></h2>
 
         <div class="education-grid">
           <!-- Degree 1 -->
@@ -930,7 +938,7 @@
     <!-- 8. Contact & Footer -->
     <section id="contact" class="contact-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient">Get In Touch</span></h2>
+        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Get In Touch</span></h2>
         <p class="section-desc fade-in-up delay-100">Connect with me for developer opportunities, technical projects, or
           collaborations.</p>
 
