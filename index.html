@@ -34,29 +34,154 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="index.css?v=certvault4">
   <style>
+    /* 1. Vibration Lock */
+    #scramble-target {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+      min-width: 14ch;
+      max-width: 14ch;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
     .contact-morph-btn {
+      width: 114px !important;
+      min-width: 114px !important;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .contact-morph-btn .contact-dot {
       transition: transform 0.25s ease, opacity 0.2s ease, width 0.25s ease, margin 0.25s ease;
     }
+
     .contact-morph-btn .contact-arrow {
       transform: translateX(-8px);
       opacity: 0;
       max-width: 0;
       transition: transform 0.25s ease, opacity 0.2s ease, max-width 0.25s ease;
     }
+
     .contact-morph-btn:hover .contact-dot {
       transform: scale(0);
       opacity: 0;
       width: 0;
       margin-right: 0;
     }
+
     .contact-morph-btn:hover .contact-arrow {
       transform: translateX(0);
       opacity: 1;
       max-width: 1rem;
       margin-left: 0.25rem;
+    }
+
+    /* --- 1. Nav Links: Scroll-Spy Active Indicator --- */
+    .cosmic-nav-link {
+      position: relative;
+      color: #94a3b8;
+      font-weight: 500;
+      padding: 6px 12px;
+      text-decoration: none;
+      transition: color 0.25s ease, text-shadow 0.25s ease;
+    }
+
+    /* Centered Cyan Underline Laser */
+    .cosmic-nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 65%;
+      height: 2px;
+      background: #22d3ee;
+      border-radius: 9999px;
+      box-shadow: 0 0 8px #22d3ee, 0 0 16px #06b6d4;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+      opacity: 0;
+    }
+
+    /* ACTIVE VIEWING SECTION: Locked illumination */
+    .cosmic-nav-link.active-section {
+      color: #22d3ee !important;
+      text-shadow: 0 0 12px rgba(34, 211, 238, 0.65), 0 0 20px rgba(34, 211, 238, 0.3);
+    }
+    .cosmic-nav-link.active-section::after {
+      transform: translateX(-50%) scaleX(1);
+      opacity: 1;
+    }
+
+    /* Hover state for inactive links: gentle preview */
+    .cosmic-nav-link:hover:not(.active-section) {
+      color: #e2e8f0;
+    }
+    .cosmic-nav-link:hover:not(.active-section)::after {
+      transform: translateX(-50%) scaleX(0.5);
+      opacity: 0.5;
+    }
+
+    /* Ensure floating header never blocks touches to the particle canvas */
+    header {
+      pointer-events: none !important;
+    }
+    header nav,
+    header nav *,
+    header .navbar-container,
+    header .navbar-container * {
+      pointer-events: auto;
+    }
+
+    /* --- 2. Open to Work 360-Degree Radial Diamond Stars --- */
+    #open-to-work-pill {
+      position: relative;
+      overflow: visible !important;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .diamond-star-radial {
+      position: absolute;
+      pointer-events: none;
+      font-family: serif;
+      font-size: 12px;
+      line-height: 1;
+      color: #ffffff;
+      opacity: 0;
+      user-select: none;
+      z-index: 60;
+      text-shadow: 
+        0 0 4px #ffffff,
+        0 0 8px rgba(224, 242, 254, 0.95),
+        0 0 15px rgba(34, 211, 238, 0.8);
+      animation: radialStarShine 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes radialStarShine {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.25) rotate(45deg);
+        filter: brightness(1.7);
+      }
+      70% {
+        opacity: 0.9;
+        transform: translate(calc(-50% + var(--tx) * 1.15), calc(-50% + var(--ty) * 1.15)) scale(1.0) rotate(90deg);
+        filter: brightness(1.3);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--tx) * 1.3), calc(-50% + var(--ty) * 1.3)) scale(0.1) rotate(135deg);
+      }
     }
   </style>
 </head>
@@ -74,9 +199,11 @@
   <!-- Header / Navigation -->
   <header class="navbar">
     <div class="navbar-container">
-      <a href="#hero" id="brand-tag" class="group flex items-center font-mono text-sm sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
+      <a href="#hero" id="brand-tag"
+        class="group flex items-center font-mono text-sm sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
         <span class="text-cyan-400">&lt;</span>
-        <span id="scramble-target" class="text-white font-sans font-extrabold tracking-normal px-0.5 inline-block" data-value="Vasanth Kumar">
+        <span id="scramble-target" class="text-white font-sans font-extrabold tracking-normal px-0.5 inline-block"
+          data-value="Vasanth Kumar">
           Vasanth Kumar
         </span>
         <span class="text-cyan-400">.R/&gt;</span>
@@ -84,24 +211,26 @@
 
       <!-- Desktop Navigation Links -->
       <nav class="nav-menu">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#certifications" class="nav-link">Certifications</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#contact" class="contact-morph-btn relative inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-cyan-400 hover:text-slate-950 border border-slate-700/80 hover:border-cyan-300 shadow-sm transition-all duration-300 overflow-hidden shrink-0">
-          <span class="contact-dot w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] mr-1.5"></span>
+        <a href="#about" class="nav-link cosmic-nav-link">About</a>
+        <a href="#skills" class="nav-link cosmic-nav-link">Skills</a>
+        <a href="#projects" class="nav-link cosmic-nav-link">Projects</a>
+        <a href="#certifications" class="nav-link cosmic-nav-link">Certifications</a>
+        <a href="#experience" class="nav-link cosmic-nav-link">Experience</a>
+        <a href="#education" class="nav-link cosmic-nav-link">Education</a>
+        <a href="#contact"
+          class="contact-morph-btn relative inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-cyan-400 hover:text-slate-950 border border-slate-700/80 hover:border-cyan-300 shadow-sm transition-all duration-300 overflow-hidden shrink-0">
+          <span
+            class="contact-dot w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] mr-1.5"></span>
           <span>Contact</span>
           <svg class="contact-arrow w-3.5 h-3.5 overflow-hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
       </nav>
 
       <!-- Badge & Mobile Navigation Control -->
       <div class="nav-actions">
-        <div class="badge-work">
+        <div class="badge-work" id="open-to-work-pill">
           <span class="badge-dot"></span>
           <span class="badge-text">Open to Work</span>
         </div>
@@ -123,11 +252,12 @@
       <a href="#certifications" class="mobile-nav-link">Certifications</a>
       <a href="#experience" class="mobile-nav-link">Experience</a>
       <a href="#education" class="mobile-nav-link">Education</a>
-      <a href="#contact" class="mobile-nav-link contact-morph-btn relative inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-cyan-400 hover:text-slate-950 border border-slate-700/80 hover:border-cyan-300 shadow-sm transition-all duration-300 overflow-hidden shrink-0">
+      <a href="#contact"
+        class="mobile-nav-link contact-morph-btn relative inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-cyan-400 hover:text-slate-950 border border-slate-700/80 hover:border-cyan-300 shadow-sm transition-all duration-300 overflow-hidden shrink-0">
         <span class="contact-dot w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] mr-1.5"></span>
         <span>Contact</span>
         <svg class="contact-arrow w-3.5 h-3.5 overflow-hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </a>
     </nav>
@@ -170,7 +300,7 @@
       <!-- Role & Purpose Subheadline -->
       <h2
         class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-200 to-purple-400 mt-2 fade-in-up active min-h-[1.5em] inline-flex items-center justify-center">
-        <span id="typewriter-tagline"></span>
+        <span id="typewriter-tagline">Aspiring Full-Stack & AI/ML Engineer</span>
         <span id="typewriter-cursor" class="inline-block w-[2px] h-[1em] ml-1 bg-cyan-400 animate-pulse"></span>
       </h2>
 
@@ -1100,38 +1230,113 @@
   <!-- Main JavaScript Logic -->
   <script src="index.js?v=certvault4"></script>
   <script>
-  (function() {
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
-    const brandEl = document.getElementById("brand-tag");
-    const target = document.getElementById("scramble-target");
-    if (!brandEl || !target) return;
+    (function () {
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+      const brandEl = document.getElementById("brand-tag");
+      const target = document.getElementById("scramble-target");
+      if (!brandEl || !target) return;
 
-    let interval = null;
+      let interval = null;
 
-    brandEl.addEventListener("mouseenter", () => {
-      let iteration = 0;
-      const originalText = target.dataset.value;
-      clearInterval(interval);
+      brandEl.addEventListener("mouseenter", () => {
+        let iteration = 0;
+        const originalText = target.dataset.value;
+        clearInterval(interval);
 
-      interval = setInterval(() => {
-        target.innerText = originalText
-          .split("")
-          .map((letter, index) => {
-            if (letter === " ") return " ";
-            if (index < iteration) {
-              return originalText[index];
-            }
-            return letters[Math.floor(Math.random() * letters.length)];
-          })
-          .join("");
+        interval = setInterval(() => {
+          target.innerText = originalText
+            .split("")
+            .map((letter, index) => {
+              if (letter === " ") return " ";
+              if (index < iteration) {
+                return originalText[index];
+              }
+              return letters[Math.floor(Math.random() * letters.length)];
+            })
+            .join("");
 
-        if (iteration >= originalText.length) {
-          clearInterval(interval);
+          if (iteration >= originalText.length) {
+            clearInterval(interval);
+          }
+          iteration += 1 / 2;
+        }, 28);
+      });
+    })();
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 1. ACTIVE SCROLL SPY (Underline only the currently viewed section)
+    const navLinks = document.querySelectorAll(".cosmic-nav-link");
+    const sectionIds = ["about", "skills", "projects", "certifications", "experience", "education"];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    if (navLinks.length && sections.length) {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-20% 0px -60% 0px", // Triggers accurately when section enters top-center view
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute("id");
+            navLinks.forEach(link => {
+              if (link.getAttribute("href") === `#${currentId}`) {
+                link.classList.add("active-section");
+              } else {
+                link.classList.remove("active-section");
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(sec => observer.observe(sec));
+    }
+
+    // 2. RADIAL DIAMOND STAR BURST (6-8 Stars spreading in all directions)
+    const pill = document.getElementById("open-to-work-pill");
+    if (pill) {
+      let isCooldown = false;
+      const glyphs = ["✦", "✧", "⋆"];
+
+      function triggerRadialStars() {
+        if (isCooldown) return;
+        isCooldown = true;
+        setTimeout(() => { isCooldown = false; }, 400);
+
+        const starCount = 7; // Balanced sparkle count without visual clutter
+        const step = (Math.PI * 2) / starCount;
+
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement("span");
+          star.className = "diamond-star-radial";
+          star.innerText = glyphs[i % glyphs.length];
+
+          // 360-degree radial trajectory around the pill
+          const angle = i * step + (Math.random() - 0.5) * 0.4;
+          const dist = 24 + Math.random() * 18; // Clean outward distance
+          const tx = Math.cos(angle) * dist;
+          const ty = Math.sin(angle) * dist;
+
+          star.style.setProperty("--tx", `${tx}px`);
+          star.style.setProperty("--ty", `${ty}px`);
+          
+          // Spawn from center of pill
+          star.style.left = `50%`;
+          star.style.top = `50%`;
+
+          pill.appendChild(star);
+          setTimeout(() => { star.remove(); }, 800);
         }
-        iteration += 1 / 2;
-      }, 28);
-    });
-  })();
+      }
+
+      pill.addEventListener("mouseenter", triggerRadialStars);
+      pill.addEventListener("touchstart", triggerRadialStars, { passive: true });
+    }
+  });
   </script>
 </body>
 
