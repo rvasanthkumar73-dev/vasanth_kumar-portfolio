@@ -132,7 +132,8 @@
     /* --- 2. Nav Links: Silver Hover & Exclusive Active Cyan Laser --- */
     .cosmic-nav-link {
       position: relative;
-      color: #94a3b8; /* Muted default slate */
+      color: #94a3b8;
+      /* Muted default slate */
       font-weight: 500;
       padding: 6px 12px;
       text-decoration: none;
@@ -157,7 +158,8 @@
 
     /* HOVER ONLY: Silver-white text highlight, NEVER show underline */
     .cosmic-nav-link:hover:not(.active-section) {
-      color: #f8fafc !important; /* Polished Silver / Pure White */
+      color: #f8fafc !important;
+      /* Polished Silver / Pure White */
       text-shadow: 0 0 8px rgba(248, 250, 252, 0.5);
     }
 
@@ -245,7 +247,8 @@
   <!-- Header / Navigation -->
   <header class="navbar">
     <div class="navbar-container">
-      <a href="#hero" id="brand-tag" class="group flex items-center font-mono text-xs sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
+      <a href="#hero" id="brand-tag"
+        class="group flex items-center font-mono text-xs sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
         <span id="cascading-brand-target" class="brand-char-roll-container">
           &lt;VASANTH KUMAR.R/&gt;
         </span>
@@ -1078,33 +1081,239 @@
       </div>
     </section>
 
-    <!-- 6. Experience -->
-    <section id="experience" class="experience-section section-padding scroll-spy">
-      <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Professional
-            Experience</span></h2>
+    <!-- 6. Experience & Technical Training -->
+    <section id="experience" class="py-20 relative px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <!-- Section Title & Live Typewriter Subheading -->
+      <div class="mb-14 text-center sm:text-left">
+        <!-- Continuous Multi-Color Gradient matching Portfolio standard (White -> Cyan -> Purple) -->
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-purple-500 drop-shadow-sm mb-3">
+          Experience &amp; Technical Training
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base font-normal tracking-wide min-h-[1.75rem] flex items-center justify-center sm:justify-start">
+          <span id="exp-typewriter-text" class="text-slate-300"></span>
+          <span id="exp-typewriter-cursor" class="inline-block w-0.5 h-4 ml-1 bg-cyan-400 animate-pulse"></span>
+        </p>
+      </div>
 
-        <div class="timeline-container">
-          <div class="timeline-line"></div>
+      <!-- Dynamic Timeline Spine -->
+      <div class="relative border-l border-cyan-900/50 ml-4 sm:ml-6 space-y-6 transition-all duration-500 ease-in-out">
 
-          <div class="timeline-item glass-card fade-in-up">
-            <div class="timeline-dot"></div>
-            <div class="timeline-header">
-              <span class="timeline-duration">Remote Internship</span>
-              <h3 class="timeline-role">Full Stack Development Intern</h3>
-              <h4 class="timeline-company">NoviTech R&D Pvt Ltd</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Worked with HTML, CSS, JavaScript, and basic backend concepts to develop client-side interfaces and
-                application structures.</p>
-              <ul>
-                <li>Gained exposure to project development workflows and standard version control conventions.</li>
-                <li>Collaborated within simulated development groups to solve styling challenges and coordinate
-                  interface components.</li>
-              </ul>
+        <!-- CARD 1: Google & Kaggle -->
+        <div class="relative pl-6 sm:pl-10 group exp-timeline-item">
+          <!-- Concentric Node: Mild Black outer ring + Glowing Purple core -->
+          <div class="absolute -left-[11px] top-6 flex items-center justify-center w-[22px] h-[22px] rounded-full bg-slate-950 border border-slate-700/80 shadow-md transition-transform duration-300 group-hover:scale-110">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.9)]"></span>
+          </div>
+
+          <!-- Card Box -->
+          <div class="rounded-2xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 shadow-xl overflow-hidden">
+            <!-- Compact 3-Line Header (Clickable Accordion Trigger) -->
+            <button type="button" class="w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 focus:outline-none cursor-pointer exp-toggle-btn" aria-expanded="false">
+              <div class="space-y-1">
+                <span class="text-[11px] font-bold tracking-wider uppercase text-cyan-400 block">
+                  AI INTENSIVE PROGRAM
+                </span>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white transition-colors">
+                  AI Agents Intensive Participant — <span class="font-normal text-slate-300">Agents for Good Track</span>
+                </h3>
+                <p class="text-xs sm:text-sm font-medium text-slate-400">
+                  Google &amp; Kaggle <span class="text-slate-600 mx-1.5">•</span> <span class="text-slate-400 font-mono text-xs">July 2026</span>
+                </p>
+              </div>
+              <!-- Chevron Rotate Arrow -->
+              <div class="shrink-0 p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 text-cyan-400 transition-transform duration-300 exp-chevron mt-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+
+            <!-- Collapsible Content Drawer -->
+            <div class="exp-drawer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out px-6 sm:px-7">
+              <div class="pt-2 pb-6 border-t border-slate-800/70 space-y-4">
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Completed the 5-Day AI Agents Intensive Vibe Coding course organized by Google and Kaggle, focusing on autonomous AI workflows and practical agent architectures.
+                </p>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Completed the intensive curriculum on designing and orchestrating multi-step AI agents.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Engineered and submitted <strong class="text-white font-medium">Eco-Agent</strong> as a capstone project under the <em>Agents for Good</em> track.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Authored the project write-up and recorded a comprehensive video demonstration detailing its architecture and workflow.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- CARD 2: Bank of America (BA Continuum India) -->
+        <div class="relative pl-6 sm:pl-10 group exp-timeline-item">
+          <!-- Concentric Node -->
+          <div class="absolute -left-[11px] top-6 flex items-center justify-center w-[22px] h-[22px] rounded-full bg-slate-950 border border-slate-700/80 shadow-md transition-transform duration-300 group-hover:scale-110">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.9)]"></span>
+          </div>
+
+          <!-- Card Box -->
+          <div class="rounded-2xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 shadow-xl overflow-hidden">
+            <!-- Compact 3-Line Header -->
+            <button type="button" class="w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 focus:outline-none cursor-pointer exp-toggle-btn" aria-expanded="false">
+              <div class="space-y-1">
+                <span class="text-[11px] font-bold tracking-wider uppercase text-cyan-400 block">
+                  ONSITE CORPORATE PROGRAM
+                </span>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white transition-colors">
+                  Corporate Development Program (CDC) Trainee
+                </h3>
+                <p class="text-xs sm:text-sm font-medium text-slate-400">
+                  Bank of America (BA Continuum India) <span class="text-slate-600 mx-1.5">•</span> <span class="text-slate-400 font-mono text-xs">5 Weeks (Jun – Jul 2026)</span>
+                </p>
+              </div>
+              <!-- Chevron Rotate Arrow -->
+              <div class="shrink-0 p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 text-cyan-400 transition-transform duration-300 exp-chevron mt-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+
+            <!-- Collapsible Content Drawer -->
+            <div class="exp-drawer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out px-6 sm:px-7">
+              <div class="pt-2 pb-6 border-t border-slate-800/70 space-y-4">
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Selected through an interview process for an on-campus corporate development program structured into dedicated daily soft-skills workshops and technical training sessions at DLF Downtown, Taramani, Chennai.
+                </p>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Completed intensive daily modules spanning soft skills, professional workplace etiquette, and enterprise team communication.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Prepared and delivered a technical presentation, <strong class="text-white font-medium">"Tools Leveraged in Our Day-to-Day Life,"</strong> to mentors — given 10 allotted minutes, extended to 19 minutes with a live demonstration of a self-built <strong class="text-cyan-300 font-medium">n8n news-briefing automation</strong>, followed by 5 minutes of positive mentor feedback.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Trained across industry technical tracks daily, including SDLC, Agile methodologies, Python, Flask, Postman API testing, SQL, and SQLite database management.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Anudip Foundation -->
+        <div class="relative pl-6 sm:pl-10 group exp-timeline-item">
+          <!-- Concentric Node -->
+          <div class="absolute -left-[11px] top-6 flex items-center justify-center w-[22px] h-[22px] rounded-full bg-slate-950 border border-slate-700/80 shadow-md transition-transform duration-300 group-hover:scale-110">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.9)]"></span>
+          </div>
+
+          <!-- Card Box -->
+          <div class="rounded-2xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 shadow-xl overflow-hidden">
+            <!-- Compact 3-Line Header -->
+            <button type="button" class="w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 focus:outline-none cursor-pointer exp-toggle-btn" aria-expanded="false">
+              <div class="space-y-1">
+                <span class="text-[11px] font-bold tracking-wider uppercase text-cyan-400 block">
+                  PROFESSIONAL CERTIFICATION COURSE
+                </span>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white transition-colors">
+                  Advanced Frontend Development Scholar
+                </h3>
+                <p class="text-xs sm:text-sm font-medium text-slate-400">
+                  Anudip Foundation <span class="text-slate-600 mx-1.5">•</span> <span class="text-slate-400 font-mono text-xs">3 Months (Jan – Mar 2026)</span>
+                </p>
+              </div>
+              <!-- Chevron Rotate Arrow -->
+              <div class="shrink-0 p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 text-cyan-400 transition-transform duration-300 exp-chevron mt-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+
+            <!-- Collapsible Content Drawer -->
+            <div class="exp-drawer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out px-6 sm:px-7">
+              <div class="pt-2 pb-6 border-t border-slate-800/70 space-y-4">
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Pursued and completed a 3-month advanced certification course focused on client-side software engineering, modern JavaScript frameworks, and structured application development.
+                </p>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Studied advanced frontend development concepts, component architecture, state management, and lifecycle workflows.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Engineered dynamic, modular web views with a strong focus on clean code, responsive layouts, and cross-device performance.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Completed hands-on practical assessments, peer code evaluations, and verified coursework for the professional credential.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: NoviTech R&D Pvt Ltd -->
+        <div class="relative pl-6 sm:pl-10 group exp-timeline-item">
+          <!-- Concentric Node -->
+          <div class="absolute -left-[11px] top-6 flex items-center justify-center w-[22px] h-[22px] rounded-full bg-slate-950 border border-slate-700/80 shadow-md transition-transform duration-300 group-hover:scale-110">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.9)]"></span>
+          </div>
+
+          <!-- Card Box -->
+          <div class="rounded-2xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 shadow-xl overflow-hidden">
+            <!-- Compact 3-Line Header -->
+            <button type="button" class="w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 focus:outline-none cursor-pointer exp-toggle-btn" aria-expanded="false">
+              <div class="space-y-1">
+                <span class="text-[11px] font-bold tracking-wider uppercase text-cyan-400 block">
+                  REMOTE INTERNSHIP
+                </span>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white transition-colors">
+                  Full Stack Development Intern
+                </h3>
+                <p class="text-xs sm:text-sm font-medium text-slate-400">
+                  NoviTech R&amp;D Pvt Ltd <span class="text-slate-600 mx-1.5">•</span> <span class="text-slate-400 font-mono text-xs">Jun – Jul 2025</span>
+                </p>
+              </div>
+              <!-- Chevron Rotate Arrow -->
+              <div class="shrink-0 p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 text-cyan-400 transition-transform duration-300 exp-chevron mt-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+
+            <!-- Collapsible Content Drawer -->
+            <div class="exp-drawer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out px-6 sm:px-7">
+              <div class="pt-2 pb-6 border-t border-slate-800/70 space-y-4">
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Worked with HTML, CSS, JavaScript, and basic backend concepts to develop client-side interfaces and application structures.
+                </p>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Gained exposure to project development workflows and standard version control conventions.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold select-none">→</span>
+                    <span>Collaborated within simulated development groups to solve styling challenges and coordinate interface components.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1441,6 +1650,68 @@
         pill.addEventListener("touchstart", triggerRadialStars, { passive: true });
       });
     });
+  </script>
+
+  <script>
+    (function() {
+      // 1. Live Typewriter Effect for Experience Subheading
+      const typewriterTarget = document.getElementById("exp-typewriter-text");
+      const expSection = document.getElementById("experience");
+      const textToType = "Practical industry immersion, corporate technical programs, and certified full-stack & AI development tracks.";
+      let hasTyped = false;
+
+      function runTypewriter() {
+        if (hasTyped || !typewriterTarget) return;
+        hasTyped = true;
+        let index = 0;
+        typewriterTarget.textContent = "";
+
+        function typeNextChar() {
+          if (index < textToType.length) {
+            typewriterTarget.textContent += textToType.charAt(index);
+            index++;
+            setTimeout(typeNextChar, 28);
+          }
+        }
+        typeNextChar();
+      }
+
+      if (expSection) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            runTypewriter();
+            observer.disconnect();
+          }
+        }, { threshold: 0.15 });
+        observer.observe(expSection);
+      }
+
+      // 2. Expandable Accordion Drawer with Dynamic Timeline Spine Adaptation
+      const toggleButtons = document.querySelectorAll(".exp-toggle-btn");
+
+      toggleButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".exp-timeline-item");
+          const drawer = card.querySelector(".exp-drawer");
+          const chevron = btn.querySelector(".exp-chevron");
+          const isExpanded = btn.getAttribute("aria-expanded") === "true";
+
+          if (isExpanded) {
+            drawer.style.maxHeight = "0px";
+            drawer.classList.remove("opacity-100");
+            drawer.classList.add("opacity-0");
+            chevron.style.transform = "rotate(0deg)";
+            btn.setAttribute("aria-expanded", "false");
+          } else {
+            drawer.style.maxHeight = drawer.scrollHeight + "px";
+            drawer.classList.remove("opacity-0");
+            drawer.classList.add("opacity-100");
+            chevron.style.transform = "rotate(180deg)";
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    })();
   </script>
 </body>
 
