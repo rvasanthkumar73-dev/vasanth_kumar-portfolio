@@ -1083,15 +1083,15 @@
 
     <!-- 6. Experience & Technical Training -->
     <section id="experience" class="py-20 relative px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <!-- Section Title & Live Typewriter Subheading -->
       <div class="mb-14 text-center sm:text-left">
-        <!-- Continuous Multi-Color Gradient matching Portfolio standard (White -> Cyan -> Purple) -->
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-purple-500 drop-shadow-sm mb-3">
-          Experience &amp; Technical Training
+        <!-- Heading with continuous gradient and disappearing cursor -->
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight min-h-[3rem] sm:min-h-[3.5rem] flex items-center justify-center sm:justify-start mb-3">
+          <span id="exp-heading-typewriter" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-purple-500 drop-shadow-sm"></span>
+          <span id="exp-heading-cursor" class="inline-block w-1 sm:w-1.5 h-7 sm:h-9 ml-1.5 bg-cyan-400 animate-pulse transition-opacity duration-500"></span>
         </h2>
-        <p class="text-slate-400 text-sm sm:text-base font-normal tracking-wide min-h-[1.75rem] flex items-center justify-center sm:justify-start">
-          <span id="exp-typewriter-text" class="text-slate-300"></span>
-          <span id="exp-typewriter-cursor" class="inline-block w-0.5 h-4 ml-1 bg-cyan-400 animate-pulse"></span>
+        <!-- Static Subheading -->
+        <p class="text-slate-400 text-sm sm:text-base font-normal tracking-wide max-w-2xl">
+          Practical industry immersion, corporate technical programs, and certified full-stack &amp; AI development tracks.
         </p>
       </div>
 
@@ -1224,7 +1224,7 @@
                   PROFESSIONAL CERTIFICATION COURSE
                 </span>
                 <h3 class="text-base sm:text-lg md:text-xl font-bold text-white transition-colors">
-                  Advanced Frontend Development Scholar
+                  Advanced Frontend Development Course
                 </h3>
                 <p class="text-xs sm:text-sm font-medium text-slate-400">
                   Anudip Foundation <span class="text-slate-600 mx-1.5">•</span> <span class="text-slate-400 font-mono text-xs">3 Months (Jan – Mar 2026)</span>
@@ -1654,39 +1654,52 @@
 
   <script>
     (function() {
-      // 1. Live Typewriter Effect for Experience Subheading
-      const typewriterTarget = document.getElementById("exp-typewriter-text");
+      const headingTarget = document.getElementById("exp-heading-typewriter");
+      const cursorTarget = document.getElementById("exp-heading-cursor");
       const expSection = document.getElementById("experience");
-      const textToType = "Practical industry immersion, corporate technical programs, and certified full-stack & AI development tracks.";
+      const textToType = "Experience & Technical Training";
       let hasTyped = false;
 
-      function runTypewriter() {
-        if (hasTyped || !typewriterTarget) return;
+      function runSmoothTypewriter() {
+        if (hasTyped || !headingTarget) return;
         hasTyped = true;
         let index = 0;
-        typewriterTarget.textContent = "";
+        headingTarget.textContent = "";
 
         function typeNextChar() {
           if (index < textToType.length) {
-            typewriterTarget.textContent += textToType.charAt(index);
+            headingTarget.textContent += textToType.charAt(index);
             index++;
-            setTimeout(typeNextChar, 28);
+            // 65ms per character gives a natural, readable pace on both mobile and desktop
+            setTimeout(typeNextChar, 65);
+          } else {
+            // Smoothly fade out and remove cursor after typing finishes
+            if (cursorTarget) {
+              setTimeout(() => {
+                cursorTarget.classList.remove("animate-pulse");
+                cursorTarget.style.opacity = "0";
+                setTimeout(() => {
+                  cursorTarget.style.display = "none";
+                }, 500);
+              }, 600);
+            }
           }
         }
+
         typeNextChar();
       }
 
       if (expSection) {
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
-            runTypewriter();
+            runSmoothTypewriter();
             observer.disconnect();
           }
         }, { threshold: 0.15 });
         observer.observe(expSection);
       }
 
-      // 2. Expandable Accordion Drawer with Dynamic Timeline Spine Adaptation
+      // Expandable Accordion Drawer with Dynamic Timeline Spine Adaptation
       const toggleButtons = document.querySelectorAll(".exp-toggle-btn");
 
       toggleButtons.forEach(btn => {
