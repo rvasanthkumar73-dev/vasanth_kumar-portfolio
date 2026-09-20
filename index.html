@@ -252,12 +252,22 @@
   <!-- Header / Navigation -->
   <header class="navbar">
     <div class="navbar-container">
-      <a href="#hero" id="brand-tag"
-        class="group flex items-center font-mono text-xs sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
-        <span id="cascading-brand-target" class="brand-char-roll-container">
-          &lt;VASANTH KUMAR.R/&gt;
+      <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+        <a href="#hero" id="brand-tag"
+          class="group flex items-center font-mono text-xs sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
+          <span id="cascading-brand-target" class="brand-char-roll-container">
+            &lt;VASANTH KUMAR.R/&gt;
+          </span>
+        </a>
+
+        <!-- Open to Work Badge (Mobile-Only: visible < 768px, hidden >= 768px) -->
+        <span id="open-to-work-pill"
+          class="badge-work work-pill inline-flex md:hidden items-center gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 shadow-[0_0_8px_rgba(16,185,129,0.15)] whitespace-nowrap cursor-pointer select-none shrink-0">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 -ml-3"></span>
+          <span>Open to Work</span>
         </span>
-      </a>
+      </div>
 
       <!-- Desktop Navigation Links -->
       <nav class="nav-menu">
@@ -279,8 +289,9 @@
       </nav>
 
       <!-- Badge & Mobile Navigation Control -->
-      <div class="nav-actions">
-        <div class="badge-work" id="open-to-work-pill">
+      <div class="nav-actions flex items-center gap-3">
+        <!-- Open to Work Badge (Desktop/Laptop-Only: hidden < 768px, visible >= 768px) -->
+        <div class="badge-work work-pill hidden md:inline-flex cursor-pointer select-none" id="open-to-work-pill-desktop">
           <span class="badge-dot"></span>
           <span class="badge-text">Open to Work</span>
         </div>
@@ -1505,8 +1516,8 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer-bar">
-    <div class="container footer-container">
+  <footer class="footer-bar w-full max-w-full overflow-hidden text-center">
+    <div class="footer-container w-full max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col md:flex-row items-center justify-center md:justify-between gap-2.5 sm:gap-4">
       <p class="copyright">&copy; 2026 Vasanth Kumar R. All rights reserved.</p>
       <p class="footer-tagline">Built with modern client-side standards & AI systems focus.</p>
     </div>
