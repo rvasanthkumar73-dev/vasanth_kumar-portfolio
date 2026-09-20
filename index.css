@@ -50,6 +50,12 @@ canvas {
   touch-action: pan-y !important;
 }
 
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -57,6 +63,20 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Spline GPU Hardware Acceleration, Containment & Jitter Suppression */
+.spline-hero-wrapper,
+spline-viewer,
+.robot-iframe-wrapper,
+.contact-robot-container {
+  contain: layout paint size;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  touch-action: pan-y !important;
 }
 
 /* Scrollbar Customization */
@@ -2493,10 +2513,6 @@ spline-viewer::shadow .spline-watermark,
     padding: 0.65rem 1.2rem;
   }
 
-  .badge-work {
-    display: none;
-    /* Hide work status badge from navbar on narrow screens to save space */
-  }
 
   .hero-mobile-badge {
     display: inline-flex;

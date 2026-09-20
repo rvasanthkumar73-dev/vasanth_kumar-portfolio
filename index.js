@@ -2,40 +2,25 @@
    Dark Theatrical Portfolio Logic
    -------------------------------------------------- */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize navigation logic
+function bootPortfolio() {
   initNavigation();
-
-  // Initialize scroll animations
   initScrollAnimations();
-
-  // Initialize terminal typewriter titles
   initTypewriterTitles();
-
-  // Initialize hero golden metric count-up
   initHeroMetricsCountUp();
-
-  // Initialize ambient interactive canvas background
   initAmbientCanvas();
-
-  // Initialize interactive resume modal
   initResumeModal();
-
-  // Initialize dynamic 3D skill cards
   initSkills3D();
-
-  // Initialize infinite horizontal 3D certificate vault & lightbox modal
   initCertVault();
-
-  // Initialize viewport-aware footer robot rendering
   initFooterRobotObserver();
-
-  // Optimize mobile hardware acceleration and Spline DPR
   optimizeSplineDPR();
-
-  // Initialize viewport-aware project video observer
   initProjectVideoObserver();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootPortfolio, { passive: true });
+} else {
+  bootPortfolio();
+}
 
 /* --------------------------------------------------
    1. Navigation & Mobile Drawer
@@ -296,33 +281,56 @@ function initAmbientCanvas() {
     }
   }
 
-  function animate() {
+  function updateParticles() {
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    // Draw connections and update nodes
     connectParticles();
     particles.forEach(particle => particle.update());
+  }
 
+  function animate() {
+    updateParticles();
     animationId = requestAnimationFrame(animate);
   }
 
-  // Event Listeners
-  window.addEventListener('resize', resizeCanvas);
+  // Event Listeners with Passive Touch & Mouse Support
+  window.addEventListener('resize', resizeCanvas, { passive: true });
 
   if (!isTouchDevice) {
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    });
+    }, { passive: true });
 
     window.addEventListener('mouseleave', () => {
       mouse.x = null;
       mouse.y = null;
-    });
+    }, { passive: true });
+  } else {
+    // Preserve touch-interaction on mobile devices for finger touches
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      mouse.x = null;
+      mouse.y = null;
+    }, { passive: true });
   }
 
-  // Initialize and run
+  // Initialize and paint initial frame instantly
   resizeCanvas();
+  connectParticles();
+  particles.forEach(particle => particle.draw());
   animate();
 }
 
@@ -419,25 +427,45 @@ function initSkills3D() {
   const cards = document.querySelectorAll('.skill-card-3d');
   cards.forEach(card => {
     const inner = card.querySelector('.skill-card-3d-inner');
+    if (!inner) return;
+
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+    let isHovered = false;
+
+    function updateTilt() {
+      currentX += (targetX - currentX) * 0.09;
+      currentY += (targetY - currentY) * 0.09;
+      inner.style.transform = `rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg)`;
+
+      if (isHovered || Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+        requestAnimationFrame(updateTilt);
+      } else if (!isHovered) {
+        inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      }
+    }
 
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      // Calculate rotation: max 20 degrees in either direction
-      const rotateX = ((centerY - y) / centerY) * 20;
-      const rotateY = ((x - centerX) / centerX) * 20;
+      targetX = ((centerY - y) / centerY) * 16;
+      targetY = ((x - centerX) / centerX) * 16;
 
-      inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+      if (!isHovered) {
+        isHovered = true;
+        requestAnimationFrame(updateTilt);
+      }
+    }, { passive: true });
 
     card.addEventListener('mouseleave', () => {
-      inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    });
+      isHovered = false;
+      targetX = 0;
+      targetY = 0;
+    }, { passive: true });
   });
 }
 
