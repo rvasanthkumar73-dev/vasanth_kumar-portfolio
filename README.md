@@ -1,6 +1,6 @@
 # Vasanth Kumar R — AI & Full-Stack Engineer
 
-![Portfolio Hero Section](./hero-screenshot.png)
+![Portfolio Hero Section](./hero_section.png)
 
 > **Live Portfolio:** [https://vasanth-kumar-portfolio-sooty.vercel.app/?hl=en-IN](https://vasanth-kumar-portfolio-sooty.vercel.app/?hl=en-IN)
 
