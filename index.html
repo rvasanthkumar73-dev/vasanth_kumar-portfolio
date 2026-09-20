@@ -57,7 +57,7 @@
       display: flex;
       flex-direction: column;
       transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .char-face {
@@ -79,9 +79,14 @@
       transform: rotateX(-90deg) translateZ(0.8rem);
     }
 
-    /* Trigger the 3D ripple roll across characters on hover */
-    #brand-tag:hover .char-flipper {
+    /* Trigger the 3D ripple roll across characters on hover & rapid cursor pass-through */
+    #brand-tag:hover .char-flipper,
+    #brand-tag.is-rolling .char-flipper,
+    .nav-logo-wrap:hover .nav-logo-char,
+    .nav-logo-wrap.is-rolling .nav-logo-char {
       transform: rotateX(90deg);
+      transition-duration: 0.45s !important;
+      transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1) !important;
     }
 
     /* Color definitions: Tags cyan, Full name + initial white */
@@ -1394,6 +1399,9 @@
     <section id="education" class="education-section section-padding scroll-spy">
       <div class="container max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <h2 class="section-title fade-in-up"><span class="text-gradient typewriter-heading">Education</span></h2>
+        <p class="text-slate-400 text-sm sm:text-base font-normal tracking-wide mt-2 mb-8 sm:mb-10">
+          Academic foundations and formal qualifications in computer science.
+        </p>
 
         <div class="education-grid">
           <!-- Degree 1 -->
@@ -1651,6 +1659,8 @@
 
       // 1. Build Exact Video-Style Cascading 3D Roll
       const brandContainer = document.getElementById("cascading-brand-target");
+      const brandTag = document.getElementById("brand-tag");
+
       if (brandContainer) {
         const rawString = "<VASANTH KUMAR.R/>";
         brandContainer.innerHTML = "";
@@ -1667,8 +1677,8 @@
 
             const flipper = document.createElement("span");
             flipper.className = "char-flipper";
-            // Stagger delay creates the mechanical wave seen in the video:
-            flipper.style.transitionDelay = `${i * 28}ms`;
+            // Rapid stagger delay (18ms) creates a crisp, fast 3D wave across the name string:
+            flipper.style.transitionDelay = `${i * 18}ms`;
 
             const front = document.createElement("span");
             front.className = `char-face char-front ${colorClass}`;
@@ -1684,6 +1694,22 @@
           }
           brandContainer.appendChild(unit);
         });
+      }
+
+      // Enforce Non-Canceled Rapid Roll on Hover / Pass-Through
+      if (brandTag) {
+        let logoRollTimer = null;
+        const triggerRapidRoll = () => {
+          brandTag.classList.add("is-rolling");
+          if (logoRollTimer) clearTimeout(logoRollTimer);
+          // Total sequence duration (18 chars * 18ms delay + 450ms animation + buffer)
+          logoRollTimer = setTimeout(() => {
+            brandTag.classList.remove("is-rolling");
+          }, 830);
+        };
+        brandTag.addEventListener("mouseenter", triggerRapidRoll);
+        brandTag.addEventListener("pointerenter", triggerRapidRoll);
+        brandTag.addEventListener("touchstart", triggerRapidRoll, { passive: true });
       }
 
       // Radial Diamond Stars on Open to Work pill
