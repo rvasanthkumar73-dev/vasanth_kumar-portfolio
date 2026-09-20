@@ -34,16 +34,63 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="index.css?v=certvault4">
   <style>
-    /* 1. Vibration Lock */
-    #scramble-target {
-      display: inline-block;
-      font-variant-numeric: tabular-nums;
-      font-feature-settings: "tnum";
-      min-width: 14ch;
-      max-width: 14ch;
-      text-align: left;
-      white-space: nowrap;
+    /* --- 1. Video-Accurate Cascading 3D Letter Roll --- */
+    .brand-char-roll-container {
+      display: inline-flex;
+      align-items: center;
       overflow: hidden;
+      height: 1.6rem;
+      line-height: 1.6rem;
+      vertical-align: middle;
+    }
+
+    .char-unit {
+      position: relative;
+      display: inline-block;
+      height: 1.6rem;
+      line-height: 1.6rem;
+      perspective: 500px;
+      overflow: hidden;
+    }
+
+    .char-flipper {
+      display: flex;
+      flex-direction: column;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .char-face {
+      display: block;
+      height: 1.6rem;
+      line-height: 1.6rem;
+      backface-visibility: hidden;
+      white-space: pre;
+    }
+
+    .char-front {
+      transform: rotateX(0deg) translateZ(0.8rem);
+    }
+
+    .char-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotateX(-90deg) translateZ(0.8rem);
+    }
+
+    /* Trigger the 3D ripple roll across characters on hover */
+    #brand-tag:hover .char-flipper {
+      transform: rotateX(90deg);
+    }
+
+    /* Color definitions: Tags cyan, Full name + initial white */
+    .color-tag {
+      color: #22d3ee;
+    }
+
+    .color-name {
+      color: #ffffff;
     }
 
     .contact-morph-btn {
@@ -82,17 +129,17 @@
       margin-left: 0.25rem;
     }
 
-    /* --- 1. Nav Links: Scroll-Spy Active Indicator --- */
+    /* --- 2. Nav Links: Silver Hover & Exclusive Active Cyan Laser --- */
     .cosmic-nav-link {
       position: relative;
-      color: #94a3b8;
+      color: #94a3b8; /* Muted default slate */
       font-weight: 500;
       padding: 6px 12px;
       text-decoration: none;
-      transition: color 0.25s ease, text-shadow 0.25s ease;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
     }
 
-    /* Centered Cyan Underline Laser */
+    /* Underline base: Strictly hidden by default */
     .cosmic-nav-link::after {
       content: '';
       position: absolute;
@@ -100,37 +147,42 @@
       left: 50%;
       transform: translateX(-50%) scaleX(0);
       width: 65%;
-      height: 2px;
+      height: 2.5px;
       background: #22d3ee;
       border-radius: 9999px;
-      box-shadow: 0 0 8px #22d3ee, 0 0 16px #06b6d4;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+      box-shadow: 0 0 10px #22d3ee, 0 0 18px #06b6d4;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
       opacity: 0;
     }
 
-    /* ACTIVE VIEWING SECTION: Locked illumination */
-    .cosmic-nav-link.active-section {
-      color: #22d3ee !important;
-      text-shadow: 0 0 12px rgba(34, 211, 238, 0.65), 0 0 20px rgba(34, 211, 238, 0.3);
-    }
-    .cosmic-nav-link.active-section::after {
-      transform: translateX(-50%) scaleX(1);
-      opacity: 1;
+    /* HOVER ONLY: Silver-white text highlight, NEVER show underline */
+    .cosmic-nav-link:hover:not(.active-section) {
+      color: #f8fafc !important; /* Polished Silver / Pure White */
+      text-shadow: 0 0 8px rgba(248, 250, 252, 0.5);
     }
 
-    /* Hover state for inactive links: gentle preview */
-    .cosmic-nav-link:hover:not(.active-section) {
-      color: #e2e8f0;
+    /* Ensure hover does NOT trigger ::after */
+    .cosmic-nav-link:hover::after {
+      transform: translateX(-50%) scaleX(0) !important;
+      opacity: 0 !important;
     }
-    .cosmic-nav-link:hover:not(.active-section)::after {
-      transform: translateX(-50%) scaleX(0.5);
-      opacity: 0.5;
+
+    /* ACTIVE SECTION ONLY: Cyan glow + Cyan laser line */
+    .cosmic-nav-link.active-section {
+      color: #22d3ee !important;
+      text-shadow: 0 0 12px rgba(34, 211, 238, 0.7);
+    }
+
+    .cosmic-nav-link.active-section::after {
+      transform: translateX(-50%) scaleX(1) !important;
+      opacity: 1 !important;
     }
 
     /* Ensure floating header never blocks touches to the particle canvas */
     header {
       pointer-events: none !important;
     }
+
     header nav,
     header nav *,
     header .navbar-container,
@@ -138,7 +190,8 @@
       pointer-events: auto;
     }
 
-    /* --- 2. Open to Work 360-Degree Radial Diamond Stars --- */
+    /* Radial Diamond Stars */
+    .work-pill,
     #open-to-work-pill {
       position: relative;
       overflow: visible !important;
@@ -156,31 +209,24 @@
       opacity: 0;
       user-select: none;
       z-index: 60;
-      text-shadow: 
-        0 0 4px #ffffff,
-        0 0 8px rgba(224, 242, 254, 0.95),
-        0 0 15px rgba(34, 211, 238, 0.8);
+      text-shadow: 0 0 4px #fff, 0 0 8px #38bdf8;
       animation: radialStarShine 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes radialStarShine {
       0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+        transform: translate(-50%, -50%) scale(0.2);
       }
+
       30% {
         opacity: 1;
-        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.25) rotate(45deg);
-        filter: brightness(1.7);
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2);
       }
-      70% {
-        opacity: 0.9;
-        transform: translate(calc(-50% + var(--tx) * 1.15), calc(-50% + var(--ty) * 1.15)) scale(1.0) rotate(90deg);
-        filter: brightness(1.3);
-      }
+
       100% {
         opacity: 0;
-        transform: translate(calc(-50% + var(--tx) * 1.3), calc(-50% + var(--ty) * 1.3)) scale(0.1) rotate(135deg);
+        transform: translate(calc(-50% + var(--tx) * 1.3), calc(-50% + var(--ty) * 1.3)) scale(0.1);
       }
     }
   </style>
@@ -199,14 +245,10 @@
   <!-- Header / Navigation -->
   <header class="navbar">
     <div class="navbar-container">
-      <a href="#hero" id="brand-tag"
-        class="group flex items-center font-mono text-sm sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
-        <span class="text-cyan-400">&lt;</span>
-        <span id="scramble-target" class="text-white font-sans font-extrabold tracking-normal px-0.5 inline-block"
-          data-value="Vasanth Kumar">
-          Vasanth Kumar
+      <a href="#hero" id="brand-tag" class="group flex items-center font-mono text-xs sm:text-base md:text-lg font-bold select-none cursor-pointer focus:outline-none shrink-0">
+        <span id="cascading-brand-target" class="brand-char-roll-container">
+          &lt;VASANTH KUMAR.R/&gt;
         </span>
-        <span class="text-cyan-400">.R/&gt;</span>
       </a>
 
       <!-- Desktop Navigation Links -->
@@ -1265,78 +1307,140 @@
   </script>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // 1. ACTIVE SCROLL SPY (Underline only the currently viewed section)
-    const navLinks = document.querySelectorAll(".cosmic-nav-link");
-    const sectionIds = ["about", "skills", "projects", "certifications", "experience", "education"];
-    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    document.addEventListener("DOMContentLoaded", function () {
+      const navLinks = document.querySelectorAll(".cosmic-nav-link");
+      // All page sections in exact vertical order:
+      const sectionIds = ["hero", "about", "skills", "projects", "certifications", "experience", "education", "contact"];
 
-    if (navLinks.length && sections.length) {
-      const observerOptions = {
-        root: null,
-        rootMargin: "-20% 0px -60% 0px", // Triggers accurately when section enters top-center view
-        threshold: 0
-      };
+      function updateActiveNavInstant() {
+        // Check if user is at the very top (Hero)
+        if (window.scrollY < 200) {
+          navLinks.forEach(link => link.classList.remove("active-section"));
+          return;
+        }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const currentId = entry.target.getAttribute("id");
-            navLinks.forEach(link => {
-              if (link.getAttribute("href") === `#${currentId}`) {
-                link.classList.add("active-section");
-              } else {
-                link.classList.remove("active-section");
-              }
-            });
+        // Focal point is 35% from the top of viewport (where user reads)
+        const focalY = window.innerHeight * 0.35;
+        let currentSection = "";
+
+        for (let i = 0; i < sectionIds.length; i++) {
+          const el = document.getElementById(sectionIds[i]);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            // Section is active if the focal line is inside its bounds
+            if (rect.top <= focalY && rect.bottom > focalY) {
+              currentSection = sectionIds[i];
+              break;
+            }
+          }
+        }
+
+        // If reached bottom of page, default to contact
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+          currentSection = "contact";
+        }
+
+        // Instantly update nav links:
+        // If currentSection is 'contact' or 'hero', all 6 text nav links instantly clear!
+        navLinks.forEach(link => {
+          const href = link.getAttribute("href");
+          if (currentSection && href === `#${currentSection}`) {
+            link.classList.add("active-section");
+          } else {
+            link.classList.remove("active-section");
           }
         });
-      }, observerOptions);
-
-      sections.forEach(sec => observer.observe(sec));
-    }
-
-    // 2. RADIAL DIAMOND STAR BURST (6-8 Stars spreading in all directions)
-    const pill = document.getElementById("open-to-work-pill");
-    if (pill) {
-      let isCooldown = false;
-      const glyphs = ["✦", "✧", "⋆"];
-
-      function triggerRadialStars() {
-        if (isCooldown) return;
-        isCooldown = true;
-        setTimeout(() => { isCooldown = false; }, 400);
-
-        const starCount = 7; // Balanced sparkle count without visual clutter
-        const step = (Math.PI * 2) / starCount;
-
-        for (let i = 0; i < starCount; i++) {
-          const star = document.createElement("span");
-          star.className = "diamond-star-radial";
-          star.innerText = glyphs[i % glyphs.length];
-
-          // 360-degree radial trajectory around the pill
-          const angle = i * step + (Math.random() - 0.5) * 0.4;
-          const dist = 24 + Math.random() * 18; // Clean outward distance
-          const tx = Math.cos(angle) * dist;
-          const ty = Math.sin(angle) * dist;
-
-          star.style.setProperty("--tx", `${tx}px`);
-          star.style.setProperty("--ty", `${ty}px`);
-          
-          // Spawn from center of pill
-          star.style.left = `50%`;
-          star.style.top = `50%`;
-
-          pill.appendChild(star);
-          setTimeout(() => { star.remove(); }, 800);
-        }
       }
 
-      pill.addEventListener("mouseenter", triggerRadialStars);
-      pill.addEventListener("touchstart", triggerRadialStars, { passive: true });
-    }
-  });
+      // Instant scroll detection using requestAnimationFrame (0ms lag, no delay)
+      let ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updateActiveNavInstant();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Initial check on page load
+      updateActiveNavInstant();
+
+      // 1. Build Exact Video-Style Cascading 3D Roll
+      const brandContainer = document.getElementById("cascading-brand-target");
+      if (brandContainer) {
+        const rawString = "<VASANTH KUMAR.R/>";
+        brandContainer.innerHTML = "";
+
+        rawString.split("").forEach((char, i) => {
+          const unit = document.createElement("span");
+          unit.className = "char-unit";
+
+          if (char === " ") {
+            unit.innerHTML = `<span style="display:inline-block; width:0.4em;">&nbsp;</span>`;
+          } else {
+            const isTag = (char === "<" || char === "/" || char === ">");
+            const colorClass = isTag ? "color-tag" : "color-name";
+
+            const flipper = document.createElement("span");
+            flipper.className = "char-flipper";
+            // Stagger delay creates the mechanical wave seen in the video:
+            flipper.style.transitionDelay = `${i * 28}ms`;
+
+            const front = document.createElement("span");
+            front.className = `char-face char-front ${colorClass}`;
+            front.textContent = char;
+
+            const back = document.createElement("span");
+            back.className = `char-face char-back ${colorClass}`;
+            back.textContent = char;
+
+            flipper.appendChild(front);
+            flipper.appendChild(back);
+            unit.appendChild(flipper);
+          }
+          brandContainer.appendChild(unit);
+        });
+      }
+
+      // Radial Diamond Stars on Open to Work pill
+      const pills = document.querySelectorAll(".work-pill, #open-to-work-pill, .badge-work");
+      pills.forEach(pill => {
+        let isCooldown = false;
+        const glyphs = ["✦", "✧", "⋆"];
+        function triggerRadialStars() {
+          if (isCooldown) return;
+          isCooldown = true;
+          setTimeout(() => { isCooldown = false; }, 400);
+
+          const starCount = 7;
+          const step = (Math.PI * 2) / starCount;
+
+          for (let i = 0; i < starCount; i++) {
+            const star = document.createElement("span");
+            star.className = "diamond-star-radial";
+            star.innerText = glyphs[i % glyphs.length];
+
+            const angle = i * step + (Math.random() - 0.5) * 0.4;
+            const dist = 24 + Math.random() * 18;
+            const tx = Math.cos(angle) * dist;
+            const ty = Math.sin(angle) * dist;
+
+            star.style.setProperty("--tx", `${tx}px`);
+            star.style.setProperty("--ty", `${ty}px`);
+            star.style.left = `50%`;
+            star.style.top = `50%`;
+
+            pill.appendChild(star);
+            setTimeout(() => { star.remove(); }, 800);
+          }
+        }
+
+        pill.addEventListener("mouseenter", triggerRadialStars);
+        pill.addEventListener("touchstart", triggerRadialStars, { passive: true });
+      });
+    });
   </script>
 </body>
 
